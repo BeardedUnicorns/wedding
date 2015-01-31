@@ -4,11 +4,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Location extends MY_Controller
 {
-	public function index()
-	{
-		$this->data['page_body'] = 'location';
+	 public function __construct()
+    {
+        parent::__construct();
+        $this->load->model('locations');
+    }
+    
+    public function index()
+    {
+        $places = $this->locations->get_all();
+        $this->data['page_body'] = 'location';
+        $this->data['places_list'] = $places;
         $this->render();
-	}
+    }
 }
 
 
