@@ -6,3 +6,4 @@
     <li>{name} - {status}</li>
     {/responses}
 </ul>
+<p>Comments: {comments}</p>

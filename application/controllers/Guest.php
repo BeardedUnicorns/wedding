@@ -18,6 +18,7 @@ class Guest extends MY_Controller
         $this->data['page_body']  = 'guest';
         $this->data['group_name'] = $group['name'];
         $this->data['responses']  = $group['responses'];
+        $this->data['comments']    = $group['comments'];
         $this->render();
 	}
 }
