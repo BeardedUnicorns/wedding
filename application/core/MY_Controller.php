@@ -14,7 +14,7 @@ class MY_Controller extends CI_Controller
     protected $choices = array(
         'Home'     => '/',
         'Guest'    => '/guest',
-        'News'     => '/gift',
+        'Gifts'     => '/gift',
         'Location' => '/location',
         'Login'    => '/login'
     );
