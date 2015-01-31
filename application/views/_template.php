@@ -9,11 +9,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<title>{title}</title>
 </head>
 <body>
-    <nav>
-        {menu}
-    </nav>
+    <header>
+        {header}
+        
+    </header>
     <div id="content">
         {content}
     </div>
+    <footer>
+        {footer}
+    </footer>
 </body>
 </html>
