@@ -5,14 +5,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Guests extends CI_Model
 {
     private $data = array(
-        array('id' => '1', 'comments' => '', 'responses' => array(
-            array('name' => 'Eddard Stark',  'status' => 0),
-            array('name' => 'Catelyn Tully', 'status' => 1),
-            array('name' => 'Robb Stark',    'status' => 0),
-            array('name' => 'Sansa Stark',   'status' => 1),
-            array('name' => 'Bran Stark',    'status' => 2),
-            array('name' => 'Arya Stark',    'status' => 1),
-            array('name' => 'Rickon Stark',  'status' => 1))
+        array('id' => '1', 'name' => 'The Starks', 'comments' => 'No comment',
+            'responses' => array(
+                array('name' => 'Eddard Stark',  'status' => 'Cannot attend'),
+                array('name' => 'Catelyn Tully', 'status' => 'Will attend'),
+                array('name' => 'Robb Stark',    'status' => 'Cannot attend'),
+                array('name' => 'Sansa Stark',   'status' => 'Will attend'),
+                array('name' => 'Bran Stark',    'status' => 'Not sure yet'),
+                array('name' => 'Arya Stark',    'status' => 'Cannot attend'),
+                array('name' => 'Rickon Stark',  'status' => 'Will attend'))
         )
     );
     

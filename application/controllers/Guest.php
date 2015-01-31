@@ -13,7 +13,11 @@ class Guest extends MY_Controller
     
     public function index()
 	{
-		$this->data['page_body'] = 'guest';
+		$group = $this->guests->get(1);
+        
+        $this->data['page_body']  = 'guest';
+        $this->data['group_name'] = $group['name'];
+        $this->data['responses']  = $group['responses'];
         $this->render();
 	}
 }
