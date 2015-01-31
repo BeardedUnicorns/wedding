@@ -12,7 +12,6 @@ class MY_Controller extends CI_Controller
 {
     protected $data    = array();
     protected $choices = array(
-        'Home'     => '/',
         'Guest'    => '/guest',
         'Gifts'     => '/gift',
         'Location' => '/location',
@@ -36,10 +35,15 @@ class MY_Controller extends CI_Controller
         $this->data['menu'] = build_menu_bar(
                 $this->choices, ucfirst($this->data['page_body']));
         
+        $this->data['header']  = $this->parser->parse(
+                '_header', $this->data, true);
         $this->data['content'] = $this->parser->parse(
                 $this->data['page_body'], $this->data, true);
+        $this->data['footer']  = $this->parser->parse(
+                '_footer', $this->data, true);
         
         $this->data['data'] = &$this->data;
+        
         $this->parser->parse('_template', $this->data);
     }
 }
