@@ -1,1 +1,1 @@
-<p>Location</p>
+<h2>Location</h2>
