@@ -1,1 +1,3 @@
 <p>Gift</p>
+
+{thetable}
