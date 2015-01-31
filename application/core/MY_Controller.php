@@ -13,7 +13,7 @@ class MY_Controller extends CI_Controller
     protected $data    = array();
     protected $choices = array(
         'Guest'    => '/guest',
-        'News'     => '/gift',
+        'Gifts'     => '/gift',
         'Location' => '/location',
         'Login'    => '/login'
     );
