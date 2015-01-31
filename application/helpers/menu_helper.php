@@ -14,13 +14,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  */
 function build_menu_bar($choices, $current)
 {
-    $result = '<ul id="navigation">';
+    $result = '<ul id="menu">';
     foreach ($choices as $name => $link)
     {
         if (array_key_exists($current, $choices) AND
                 $choices[$current] === $link)
         {
-            $result .= '<li class="active">';
+            $result .= '<li id="menu_active">';
         }
         else
         {
