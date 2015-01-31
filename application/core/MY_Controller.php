@@ -13,7 +13,7 @@ class MY_Controller extends CI_Controller
     protected $data    = array();
     protected $choices = array(
         'Guest'    => '/guest',
-        'Gifts'     => '/gift',
+        'Gifts'    => '/gift',
         'Location' => '/location',
         'Login'    => '/login'
     );
@@ -22,7 +22,7 @@ class MY_Controller extends CI_Controller
     function __construct()
     {
         parent::__construct();
-        $this->data['title'] = 'Page Title';
+        $this->data['title'] = 'Sarah &amp; Jeff';
         $this->load->helper('menu');
     }
     
