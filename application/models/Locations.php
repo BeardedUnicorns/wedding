@@ -2,6 +2,11 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+/**
+ * models/Locations.php
+ * 
+ * Model for location records.
+ */
 class Locations extends CI_Model
 {
     private $data = array(
@@ -19,13 +24,20 @@ class Locations extends CI_Model
         )
     );
     
-    
+    /**
+     * Default constructor.
+     */
     public function __construct()
     {
         parent::__construct();
     }
     
-    
+    /**
+     * Returns the location record with the given ID.
+     * 
+     * @param type $id an record ID
+     * @return type the record with this ID 
+     */
     public function get($id)
     {
         foreach ($this->data as $record)
@@ -39,9 +51,16 @@ class Locations extends CI_Model
         return null;
     }
     
-    
+    /**
+     * Returns all location records.
+     * 
+     * @return type all records
+     */
     public function get_all()
     {
         return $this->data;
     }
 }
+
+/* End of file Locations.php */
+/* Location: ./application/models/Locations.php */
