@@ -7,13 +7,13 @@ class Guests extends CI_Model
     private $data = array(
         array('id' => '1', 'name' => 'The Starks', 'comments' => 'No comment',
             'responses' => array(
-                array('name' => 'Eddard Stark',  'status' => 'Cannot attend'),
-                array('name' => 'Catelyn Tully', 'status' => 'Will attend'),
-                array('name' => 'Robb Stark',    'status' => 'Cannot attend'),
-                array('name' => 'Sansa Stark',   'status' => 'Will attend'),
-                array('name' => 'Bran Stark',    'status' => 'Not sure yet'),
-                array('name' => 'Arya Stark',    'status' => 'Cannot attend'),
-                array('name' => 'Rickon Stark',  'status' => 'Will attend'))
+                array('name' => 'Eddard Stark',  'status' => 'Cannot attend',   'radio' => '<input type="radio" name="r1"><input type="radio" name="r1"><input type="radio" name="r1">'),
+                array('name' => 'Catelyn Tully', 'status' => 'Will attend',   'radio' => '<input type="radio" name="r2"><input type="radio" name="r2"><input type="radio" name="r2">'),
+                array('name' => 'Robb Stark',    'status' => 'Cannot attend',   'radio' => '<input type="radio" name="r3"><input type="radio" name="r3"><input type="radio" name="r3">'),
+                array('name' => 'Sansa Stark',   'status' => 'Will attend',   'radio' => '<input type="radio" name="r4"><input type="radio" name="r4"><input type="radio" name="r4">'),
+                array('name' => 'Bran Stark',    'status' => 'Not sure yet',   'radio' => '<input type="radio" name="r5"><input type="radio" name="r5"><input type="radio" name="r5">'),
+                array('name' => 'Arya Stark',    'status' => 'Cannot attend',   'radio' => '<input type="radio" name="r6"><input type="radio" name="r6"><input type="radio" name="r6">'),
+                array('name' => 'Rickon Stark',  'status' => 'Will attend', 'radio' => ''))
         )
     );
     
