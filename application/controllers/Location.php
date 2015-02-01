@@ -10,7 +10,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Location extends MY_Controller
 {
     /**
-     * Default constructor..
+     * Default constructor.
      */
     public function __construct()
     {
