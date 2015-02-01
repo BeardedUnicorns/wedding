@@ -9,5 +9,5 @@ a wedding.
 
 ## Documentation
 
-The project proposal can be found in docs/proposal.docx and wireframes for the
-different web pages can be found in docs/diagrams.
+The project proposal can be found in (docs/proposal.docx) and wireframes for the
+different web pages can be found in (docs/diagrams).
