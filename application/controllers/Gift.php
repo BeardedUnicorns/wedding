@@ -14,7 +14,8 @@ class Gift extends MY_Controller
 	{
         
             $gifts = $this->gifts->get_all();
-            $table = '<table>';
+            $table = '<table id="gift_table">';
+            $table .= '<tr><th>Item</th><th>Cost</th><th>Description</th></tr>';
             foreach($gifts as $g)
             {
                 $table .= '<tr>';
