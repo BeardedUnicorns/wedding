@@ -20,12 +20,12 @@
 
 #group_list li:nth-child(even)
 {
-    background-color:#C69C6E;
+    background-color:#91D8FA;
 }
 
 #group_list li:nth-child(odd)
 {
-    background-color:#C4DF9B;
+    background-color:#C2EAFE;
 }
 
 #group_list li span
@@ -43,19 +43,20 @@
 {
     font-size:28px;
     font-weight: 200;
-    background-color: #7EA7D8;
-    padding-top: 15px;
+    background-color: #68C6F3;
+    padding-top: 10px;
     padding-left: 5px;
+    padding-bottom: 5px;
 }
 
 #gift_table
 {
-    background-color:#C4DF9B;
+    background-color:#C2EAFE;
 }
 
 #gift_table tr:nth-child(even)
 {
-    background-color:#C69C6E;
+    background-color:#91D8FA;
 }
 
 #gift_table tr td
