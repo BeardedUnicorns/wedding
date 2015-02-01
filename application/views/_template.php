@@ -10,6 +10,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <link rel="stylesheet" href="/assets/css/reset.css" type="text/css" media="all">
     <link rel="stylesheet" href="/assets/css/layout.css" type="text/css" media="all">
     <link rel="stylesheet" href="/assets/css/style.css" type="text/css" media="all">
+    <link rel="stylesheet" href="/assets/css/unicorns.css" type="text/css" media="all">
     <script src="/assets/js/jquery-1.6.js" ></script>
     <script src="/assets/js/cufon-yui.js"></script>
     <script src="/assets/js/cufon-replace.js"></script>
