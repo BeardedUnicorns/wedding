@@ -12,7 +12,7 @@ class MY_Controller extends CI_Controller
 {
     protected $data    = array();
     protected $choices = array(
-        'Guest'    => '/guest',
+        'Guests'   => '/guest',
         'Gifts'    => '/gift',
         'Location' => '/location',
         'Login'    => '/login'
@@ -33,7 +33,7 @@ class MY_Controller extends CI_Controller
     function render()
     {
         $this->data['menu'] = build_menu_bar(
-                $this->choices, ucfirst($this->data['page_body']));
+                $this->choices, $this->data['page_body']);
         
         $this->data['header']  = $this->parser->parse(
                 '_header', $this->data, true);

@@ -1,0 +1,51 @@
+/* global structure */
+html {
+    height: 100%;
+    overflow-y: scroll;
+}
+
+body {
+	color: black;
+    font-family: 'Century Gothic', sans-serif;
+    font-size: 1em;
+    height: 100%;
+	line-height: 1.5em;
+}
+
+#container {
+    box-sizing: border-box;
+    min-height: 100%;
+    padding: 1em 0 6em;
+}
+
+.wrapper {
+	margin: 0 auto;
+	width: 800px;
+}
+
+/* main layout */
+h1 {
+    font-family: 'Tangerine', cursive;
+    font-size: 5em;
+    padding: 0.75em 0;
+}
+
+h2 {
+    color: #666666;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 2.5em;
+	letter-spacing: -1px;
+	margin: 0 0 0.8em;
+}
+
+h1 span, h2 span {
+	color: #39baf8;
+}
+
+p {
+    
+}
+
+a {
+	color: #39baf8;
+}

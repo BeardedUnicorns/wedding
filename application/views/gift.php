@@ -1,3 +1,3 @@
-<h2>Gift</h2>
+<h2>Gift <span>List</p></h2>
 
 {thetable}

@@ -1,4 +1,4 @@
-<h2>Location</h2>
+<h2>Wedding <span>Location</span></h2>
 
 <ul>
     {places_list}

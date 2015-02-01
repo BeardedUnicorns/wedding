@@ -1,0 +1,14 @@
+footer {
+    background: url('/assets/images/background.jpg') repeat;
+    box-shadow: inset 0  12px 12px -12px lightgrey;
+    box-sizing: border-box;
+    font-size: 0.8em;
+    height: 7.5em;
+    margin: -7.5em 0 0;
+    padding: 2em 0;
+    text-align: center;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}

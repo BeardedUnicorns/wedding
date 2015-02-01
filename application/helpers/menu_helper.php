@@ -17,10 +17,9 @@ function build_menu_bar($choices, $current)
     $result = '<ul id="menu">';
     foreach ($choices as $name => $link)
     {
-        if (array_key_exists($current, $choices) AND
-                $choices[$current] === $link)
+        if ('/' . $current == $link)
         {
-            $result .= '<li id="menu_active">';
+            $result .= '<li class="active">';
         }
         else
         {
