@@ -7,7 +7,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * 
  * Default application controller.
  */
-
 class MY_Controller extends CI_Controller
 {
     protected $data    = array();
@@ -18,21 +17,23 @@ class MY_Controller extends CI_Controller
         'Login'    => '/login'
     );
     
-    
-    function __construct()
+    /**
+     * Default constructor.
+     */
+    public function __construct()
     {
         parent::__construct();
         $this->data['title'] = 'Sarah &amp; Jeff';
         $this->load->helper('menu');
     }
     
-    
     /**
-     * Render this page
+     * Renders the page. This includes creating the menu and all necessary
+     * placeholders for the view templates.
      */
-    function render()
+    public function render()
     {
-        $this->data['menu'] = build_menu_bar(
+        $this->data['menu'] = build_menu(
                 $this->choices, $this->data['page_body']);
         
         $this->data['header']  = $this->parser->parse(
