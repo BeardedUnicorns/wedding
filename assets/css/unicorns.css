@@ -41,3 +41,24 @@ and open the template in the editor.
     padding-top: 15px;
     padding-left: 5px;
 }
+
+#gift_table
+{
+    background-color:#C4DF9B;
+}
+
+#gift_table tr:nth-child(even)
+{
+    background-color:#C69C6E;
+}
+
+#gift_table tr td
+{
+    margin: 5px 20px;
+    padding: 4px 20px;
+}
+
+#gift_table tr th
+{
+    padding: 4px 10px;
+}
