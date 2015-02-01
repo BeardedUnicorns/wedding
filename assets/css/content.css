@@ -6,6 +6,11 @@
     Created on : Jan 31, 2015, 8:35:31 PM
     Author     : Jeffrey
 */
+#group_list
+{
+    list-style: none;
+}
+
 #group_list li
 {
     margin: 2px 0px;
