@@ -1,30 +1,48 @@
-a, abbr, acronym, address, applet, article, aside, audio, b, blockquote, big, body, center, canvas, caption, cite, code, command, datalist, dd, del, details, dfn, dl, div, dt, em, embed, fieldset, figcaption, figure, font, footer, form, h1, h2, h3, h4, h5, h6, header, hgroup, html, i, iframe, img, ins, kbd, keygen, label, legend, li, meter, nav, object, ol, output, p, pre, progress, q, s, samp, section, small, span, source, strike, strong, sub, sup, table, tbody, tfoot, thead, th, tr, tdvideo, tt, u, ul, var {
-	background: transparent;
-	border: 0 none;
-	font-size: 100%;
-	margin: 0;
-	padding: 0;
-	border: 0;
-	outline: 0;
-	vertical-align: top;
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code,
+del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var,
+b, i,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+    background: transparent;
+    border: 0;
+    font-weight: normal;
+    font-size: 100%;
+    margin: 0;
+    outline: 0;
+    padding: 0;
+    vertical-align: baseline;
 }
-ol, ul {
-	list-style: none;
+
+body {
+    line-height: 1;
 }
-blockquote, q {
-	quotes: none;
+
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section { 
+	display: block;
 }
-table, table td {
-	padding:0;
-	border:none;
-	border-collapse:collapse;
+
+nav ul {
+    list-style: none;
 }
-img {
-	vertical-align:top;
+
+a {
+    background: transparent;
+    font-size: 100%;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    vertical-align: baseline;
 }
-embed {
-	vertical-align:top;
-}
-* {
-	border:none
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
 }

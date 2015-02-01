@@ -1,4 +1,4 @@
-<h2>Guests</h2>
+<h2>Guest <span>Response</span></h2>
 
 <p>{group_name}</p>
 <ul>
