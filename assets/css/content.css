@@ -1,3 +1,63 @@
 #content {
     padding: 3em 0;
 }
+
+/* 
+    Created on : Jan 31, 2015, 8:35:31 PM
+    Author     : Jeffrey
+*/
+#group_list li
+{
+    margin: 2px 0px;
+    padding: 4px 0px 4px 5px;
+    font-size:18px;
+}
+
+#group_list li:nth-child(even)
+{
+    background-color:#C69C6E;
+}
+#group_list li:nth-child(odd)
+{
+    background-color:#C4DF9B;
+}
+
+#group_list li span
+{
+    margin-left: 20px;
+    margin-right: 30px;
+}
+#group_list li input
+{
+    margin: 0px 15px;
+}
+
+#group_title
+{
+    font-size:28px;
+    font-weight: 200;
+    background-color: #7EA7D8;
+    padding-top: 15px;
+    padding-left: 5px;
+}
+
+#gift_table
+{
+    background-color:#C4DF9B;
+}
+
+#gift_table tr:nth-child(even)
+{
+    background-color:#C69C6E;
+}
+
+#gift_table tr td
+{
+    margin: 5px 20px;
+    padding: 4px 20px;
+}
+
+#gift_table tr th
+{
+    padding: 4px 10px;
+}
