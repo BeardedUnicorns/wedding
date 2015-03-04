@@ -18,7 +18,7 @@ class Guests extends CI_Model
                 array('name' => 'Sansa Stark',   'status' => 'Will attend',   'radio' => '<input type="radio" name="r4"><input type="radio" name="r4"><input type="radio" name="r4">'),
                 array('name' => 'Bran Stark',    'status' => 'Not sure yet',  'radio' => '<input type="radio" name="r5"><input type="radio" name="r5"><input type="radio" name="r5">'),
                 array('name' => 'Arya Stark',    'status' => 'Cannot attend', 'radio' => '<input type="radio" name="r6"><input type="radio" name="r6"><input type="radio" name="r6">'),
-                array('name' => 'Rickon Stark',  'status' => 'Will attend',   'radio' => ''))
+                array('name' => 'Rickon Stark',  'status' => 'Will attend',   'radio' => '<input type="radio" name="r7"><input type="radio" name="r7"><input type="radio" name="r7">'))
         )
     );
     
