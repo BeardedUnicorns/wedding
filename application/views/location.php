@@ -7,5 +7,6 @@
     {events}
         <li>{name} - {time}</li>
     {/events}
+    {map}
     {/places_list}
 </ul>
