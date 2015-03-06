@@ -2,6 +2,10 @@
     padding: 3em 0;
 }
 
+#content p {
+    margin: 0.5em 0;
+}
+
 #content a:hover {
     text-decoration: underline;
 }
