@@ -173,8 +173,7 @@ $autoload['language'] = array();
 |	$autoload['model'] = array('first_model' => 'first');
 */
 
-$autoload['model'] = array();
-
+$autoload['model'] = array('gifts', 'guests', 'locations', 'users');
 
 /* End of file autoload.php */
 /* Location: ./application/config/autoload.php */

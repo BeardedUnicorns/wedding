@@ -14,7 +14,12 @@ class Users extends CI_Model
      */
     public function __construct()
     {
-        parent::__construct();
+        parent::__construct('users', 'id');
+    }
+    
+    public function getGroup($group_id)
+    {        
+        return $this->db->where('users', array('group_id' => $group_id)).results();  
     }
 }
 
