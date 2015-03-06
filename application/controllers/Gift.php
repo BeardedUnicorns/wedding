@@ -25,9 +25,25 @@ class Gift extends MY_Controller
     public function index()
 	{
         $this->data['page_body'] = 'gift';
-        $this->data['gift_items'] = $this->gifts->get_all();
+        $this->data['gift_items'] = $this->gifts->all();
         $this->render();
 	}
+    
+    public function add()
+    {
+        
+    }
+    
+    public function update($gift_id)
+    {
+        
+    }
+    
+    public function delete($gift_id)
+    {
+        $this->gifts->delete($gift_id);
+        redirect('/gift');
+    }
 }
 
 /* End of file Gift.php */
