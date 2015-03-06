@@ -1,9 +1,29 @@
 <h2>Guest <span>Response</span></h2>
 
-<p id="group_title">{group_name}</p>
-<ul id="group_list">
-    {members}
-    <li><span>{name}</span>{status}</li>
-    {/members}
-</ul>
+<form>
+
+    <table id="group_list">
+
+        <tr>
+            <th>{group_name}</th>
+            <th>Yes</th>
+            <th>No</th>
+            <th>Unknown</th>
+        </tr>
+
+        {members}
+        <tr>
+            <td>{first_name} {last_name}</td>
+                {responses}
+                <td>
+                    <input type="radio" name="{name}" value="{value}" {checked}>
+                </td>
+                {/responses}
+        </tr>
+        {/members}
+
+    </table>
+    
+</form>
+
 <p>Notes: {notes}</p>

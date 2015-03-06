@@ -61,7 +61,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `last_name`       varchar(64)     NOT NULL,
   `email`           varchar(128),
   `phone`           varchar(12),
-  `status`          char(1)         NOT NULL,
+  `status`          int(1)         NOT NULL,
   PRIMARY KEY       (`id`),
   FOREIGN KEY       (group_id)      REFERENCES  groups(id),
   FOREIGN KEY       (status)        REFERENCES  status(id)
@@ -114,13 +114,13 @@ INSERT INTO `groups` (`name`, `password`) VALUES
 ('The Coutlees', '12345'),
 ('Mom', 'mom');
 
-INSERT INTO `users` (`group_id`, `first_name`, `last_name`, `email`) VALUES
-(1, 'Shane', 'Coutlee', 'scoutlee@here.com'),
-(1, 'Karen', 'Coutlee', 'kcoutlee@here.com'),
-(1, 'Paige', 'Coutlee', ''),
-(1, 'Maya', 'Coutlee', ''),
-(2, 'Suzanne', 'VanElslander', 'svan@here.com'),
-(2, 'Noah', 'Bayntun', '');
+INSERT INTO `users` (`group_id`, `first_name`, `last_name`, `email`, `status`) VALUES
+(1, 'Shane', 'Coutlee', 'scoutlee@here.com', 0),
+(1, 'Karen', 'Coutlee', 'kcoutlee@here.com', 1),
+(1, 'Paige', 'Coutlee', '', 0),
+(1, 'Maya', 'Coutlee', '', 0),
+(2, 'Suzanne', 'VanElslander', 'svan@here.com', 2),
+(2, 'Noah', 'Bayntun', '', 2);
 
 INSERT INTO `gifts` (`title`, `description`, `cost`, `contributed`) VALUES
 ('TV', 'great!', 600, 0.5),

@@ -7,7 +7,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * 
  * Model for user accounts.
  */
-class Users extends CI_Model
+class Users extends MY_Model
 {
     /**
      * Default constructor.
