@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS `groups` (
   `password`    varchar(32) NOT NULL,
   `notes`       text,
   PRIMARY KEY   (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- Table structure for table `status`
@@ -48,7 +48,7 @@ CREATE TABLE IF NOT EXISTS `status` (
   `id`          int(1)          NOT NULL,
   `description` varchar(128)    NOT NULL,
   PRIMARY KEY   (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8  ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8  ;
 
 --
 -- Table structure for table `users`
@@ -65,7 +65,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY       (`id`),
   FOREIGN KEY       (group_id)      REFERENCES  groups(id),
   FOREIGN KEY       (status)        REFERENCES  status(id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 CREATE TABLE IF NOT EXISTS `locations` (
   `id`              int(4)          NOT NULL     AUTO_INCREMENT,
@@ -76,7 +76,7 @@ CREATE TABLE IF NOT EXISTS `locations` (
   `address`         varchar(256)    NOT NULL,
   `html`            text            NOT NULL,
   PRIMARY KEY       (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 
 --
@@ -90,7 +90,7 @@ CREATE TABLE IF NOT EXISTS `gifts` (
   `contributed`	numeric(15,2)	NOT NULL 	DEFAULT 0,
   `photo`		varchar(128),
   PRIMARY KEY 	(`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- Table structure for table `gift_contributions`
@@ -103,7 +103,7 @@ CREATE TABLE IF NOT EXISTS `gift_contributions` (
   PRIMARY KEY       (`id`),
   FOREIGN KEY       (gift_id)       REFERENCES  gifts(id),
   FOREIGN KEY       (group_id)      REFERENCES  groups(id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
     
 INSERT INTO `status` (`id`, `description`) VALUES
 (0, 'yes'),
@@ -122,7 +122,12 @@ INSERT INTO `users` (`group_id`, `first_name`, `last_name`, `email`) VALUES
 (2, 'Suzanne', 'VanElslander', 'svan@here.com'),
 (2, 'Noah', 'Bayntun', '');
 
-
+INSERT INTO `gifts` (`title`, `description`, `cost`, `contributed`) VALUES
+('TV', 'great!', 600, 0.5),
+('HoneyMoon', 'Greece!', 3000, 0.2),
+('Toaster', 'meh', 36, 0.0),
+('Fruit Basket', 'yum', 21, 1.0),
+('Goldfish', 'flush', 5, 0.0);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
