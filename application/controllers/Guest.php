@@ -44,9 +44,9 @@ class Guest extends MY_Controller
         
         // jeff to do stuff
         $this->data['page_body']  = 'guest';
-        $this->data['group_name'] = $group['name'];
+        $this->data['group_name'] = $group->name;
         $this->data['members']  = $members;
-        $this->data['notes']   = $group['notes'];
+        $this->data['notes']   = $group->notes;
         $this->render();
     }
     
