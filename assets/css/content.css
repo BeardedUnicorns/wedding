@@ -2,6 +2,10 @@
     padding: 3em 0;
 }
 
+#content a:hover {
+    text-decoration: underline;
+}
+
 /* 
     Created on : Jan 31, 2015, 8:35:31 PM
     Author     : Jeffrey
