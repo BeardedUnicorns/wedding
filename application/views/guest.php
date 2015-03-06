@@ -2,8 +2,8 @@
 
 <p id="group_title">{group_name}</p>
 <ul id="group_list">
-    {responses}
-    <li>{radio}<span>{name}</span>{status}</li>
-    {/responses}
+    {members}
+    <li><span>{name}</span>{status}</li>
+    {/members}
 </ul>
-<p>Comments: {comments}</p>
+<p>Notes: {notes}</p>
