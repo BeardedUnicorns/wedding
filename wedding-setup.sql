@@ -83,12 +83,13 @@ CREATE TABLE IF NOT EXISTS `locations` (
 -- Table structure for table `gifts`
 --
 CREATE TABLE IF NOT EXISTS `gifts` (
-  `id`              int(4)          NOT NULL    AUTO_INCREMENT,
-  `title`           varchar(64)     NOT NULL,
-  `cost`            numeric(15,2)   NOT NULL,
-  `contributed`     numeric(15,2)   NOT NULL    DEFAULT 0,
-  `photo`           varchar(128),
-  PRIMARY KEY       (`id`)
+  `id` 			int(4) 			NOT NULL	AUTO_INCREMENT,
+  `title` 		varchar(64)		NOT NULL,
+  `description` text            NOT NULL,
+  `cost` 		numeric(15,2) 	NOT NULL,
+  `contributed`	numeric(15,2)	NOT NULL 	DEFAULT 0,
+  `photo`		varchar(128),
+  PRIMARY KEY 	(`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
@@ -121,7 +122,12 @@ INSERT INTO `users` (`group_id`, `first_name`, `last_name`, `email`) VALUES
 (2, 'Suzanne', 'VanElslander', 'svan@here.com'),
 (2, 'Noah', 'Bayntun', '');
 
-
+INSERT INTO `gifts` (`title`, `description`, `cost`, `contributed`) VALUES
+('TV', 'great!', 600, 0.5),
+('HoneyMoon', 'Greece!', 3000, 0.2),
+('Toaster', 'meh', 36, 0.0),
+('Fruit Basket', 'yum', 21, 1.0),
+('Goldfish', 'flush', 5, 0.0);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
