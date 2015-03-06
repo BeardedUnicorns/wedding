@@ -18,8 +18,9 @@ class Users extends CI_Model
     }
     
     public function getGroup($group_id)
-    {        
-        return $this->db->where('users', array('group_id' => $group_id)).results();  
+    {                
+        $this->db->from('users')->where('group_id', $group_id);
+        return $this->db->get()->result();
     }
 }
 
