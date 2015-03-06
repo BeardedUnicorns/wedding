@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS `groups` (
   `password`    varchar(32) NOT NULL,
   `notes`       text,
   PRIMARY KEY   (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- Table structure for table `status`
@@ -48,7 +48,7 @@ CREATE TABLE IF NOT EXISTS `status` (
   `id`          int(1)          NOT NULL,
   `description` varchar(128)    NOT NULL,
   PRIMARY KEY   (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8  ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8  ;
 
 --
 -- Table structure for table `users`
@@ -65,7 +65,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY       (`id`),
   FOREIGN KEY       (group_id)      REFERENCES  groups(id),
   FOREIGN KEY       (status)        REFERENCES  status(id)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 CREATE TABLE IF NOT EXISTS `locations` (
   `id`              int(4)          NOT NULL     AUTO_INCREMENT,
@@ -76,7 +76,7 @@ CREATE TABLE IF NOT EXISTS `locations` (
   `address`         varchar(256)    NOT NULL,
   `html`            text            NOT NULL,
   PRIMARY KEY       (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 
 --
@@ -103,7 +103,7 @@ CREATE TABLE IF NOT EXISTS `gift_contributions` (
   PRIMARY KEY       (`id`),
   FOREIGN KEY       (gift_id)       REFERENCES  gifts(id),
   FOREIGN KEY       (group_id)      REFERENCES  groups(id)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
     
 INSERT INTO `status` (`id`, `description`) VALUES
 (0, 'yes'),
