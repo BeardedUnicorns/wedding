@@ -25,6 +25,12 @@ class MY_Controller extends CI_Controller
         parent::__construct();
         $this->data['title'] = 'Sarah &amp; Jeff';
         $this->load->helper('menu');
+        
+        if ($this->session->has_userdata('username'))
+        {
+            unset($this->choices['Login']);
+            $this->choices['Logout'] = '/logout';
+        }
     }
     
     /**
