@@ -20,6 +20,11 @@ class Guests extends MY_Model
         return $ci->users->getGroup($key);
     }
     
+    public function get_group_by_name($group_name)
+    {
+        return $this->db->where('groups', array('name' => $group_name)).results();
+    }
+    
     public function add_user($group_id, $user)
     {
         $ci = &get_instance();

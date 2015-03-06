@@ -23,14 +23,24 @@ class Guest extends MY_Controller
      * Gets one group from the Guets model.
      */
     public function index()
-	{
-		$group = $this->guests->get(1);
+    {
+        if(!$this->session->has_userdata())
+        {
+            redirect('/');
+        }
+        // will be implemented once we have real stuff
+        //$group_name = $this->session->get_userdata('username');
+        
+        $group_name = 'mom';
+        $group = $this->guests->group_by_name($group_name);
+        
+        // jeff to do stuff
         $this->data['page_body']  = 'guest';
         $this->data['group_name'] = $group['name'];
         $this->data['responses']  = $group['responses'];
         $this->data['comments']   = $group['comments'];
         $this->render();
-	}
+    }
 }
 
 /* End of file Guest.php */
