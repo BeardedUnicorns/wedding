@@ -23,36 +23,60 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 DROP TABLE IF EXISTS `groups`;
 DROP TABLE IF EXISTS `users`;
+DROP TABLE IF EXISTS `status`;
 DROP TABLE IF EXISTS `gifts`;
 DROP TABLE IF EXISTS `gift_contributions`;
+DROP TABLE IF EXISTS `locations`;
 
 
 --
 -- Table structure for table `groups`
 --
 CREATE TABLE IF NOT EXISTS `groups` (
-  `id` 			int(4) 		NOT NULL AUTO_INCREMENT,
-  `name` 		varchar(64) NOT NULL,
-  `password`	varchar(32) NOT NULL,
-  `notes` 		text,
-  PRIMARY KEY 	(`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `id`          int(4)      NOT NULL AUTO_INCREMENT,
+  `name`        varchar(64) NOT NULL,
+  `password`    varchar(32) NOT NULL,
+  `notes`       text,
+  PRIMARY KEY   (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- Table structure for table `status`
+--
+
+CREATE TABLE IF NOT EXISTS `status` (
+  `id`          int(1)          NOT NULL,
+  `description` varchar(128)    NOT NULL,
+  PRIMARY KEY   (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8  ;
 
 --
 -- Table structure for table `users`
 --
 
 CREATE TABLE IF NOT EXISTS `users` (
-  `id` 			int(4) 			NOT NULL 	AUTO_INCREMENT,
-  `group_id` 	int(4) 			NOT NULL,
-  `first_name`	varchar(64) 	NOT NULL,
-  `last_name` 	varchar(64) 	NOT NULL,
-  `email` 		varchar(128),
-  `phone` 		varchar(12),
-  `status` 		char(1) 		NOT NULL 	DEFAULT 'u',
-  PRIMARY KEY 	(`id`),
-  FOREIGN KEY 	(group_id) 		REFERENCES 	groups(id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `id`              int(4)          NOT NULL    AUTO_INCREMENT,
+  `group_id`        int(4)          NOT NULL,
+  `first_name`      varchar(64)     NOT NULL,
+  `last_name`       varchar(64)     NOT NULL,
+  `email`           varchar(128),
+  `phone`           varchar(12),
+  `status`          char(1)         NOT NULL,
+  PRIMARY KEY       (`id`),
+  FOREIGN KEY       (group_id)      REFERENCES  groups(id),
+  FOREIGN KEY       (status)        REFERENCES  status(id)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `locations` (
+  `id`              int(4)          NOT NULL     AUTO_INCREMENT,
+  `event_title`     varchar(64)     NOT NULL,
+  `description`     varchar(1024)   NOT NULL,
+  `start_time`      varchar(64)     NOT NULL,
+  `notes`           varchar(1024),
+  `address`         varchar(256)    NOT NULL,
+  `html`            text            NOT NULL,
+  PRIMARY KEY       (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 
 --
@@ -72,14 +96,19 @@ CREATE TABLE IF NOT EXISTS `gifts` (
 -- Table structure for table `gift_contributions`
 --
 CREATE TABLE IF NOT EXISTS `gift_contributions` (
-  `id` 			int(4) 			NOT NULL	AUTO_INCREMENT,
-  `gift_id`		int(4) 			NOT NULL,
-  `group_id`	int(4) 			NOT NULL,
-  `contributed`	numeric(15,2)	NOT NULL 	DEFAULT 0,
-  PRIMARY KEY	(`id`),
-  FOREIGN KEY 	(gift_id) 		REFERENCES 	gifts(id),
-  FOREIGN KEY 	(group_id) 		REFERENCES 	groups(id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `id`              int(4)          NOT NULL    AUTO_INCREMENT,
+  `gift_id`         int(4)          NOT NULL,
+  `group_id`        int(4)          NOT NULL,
+  `contributed`     numeric(15,2)   NOT NULL    DEFAULT 0,
+  PRIMARY KEY       (`id`),
+  FOREIGN KEY       (gift_id)       REFERENCES  gifts(id),
+  FOREIGN KEY       (group_id)      REFERENCES  groups(id)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+    
+INSERT INTO `status` (`id`, `description`) VALUES
+(0, 'yes'),
+(1, 'no'),
+(2, 'unknown');
 
 INSERT INTO `groups` (`name`, `password`) VALUES
 ('The Coutlees', '12345'),
