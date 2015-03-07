@@ -5,41 +5,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 /**
  * models/Guests.php
  * 
- * Model for guest groups.  Corresponds to the groups table.
+ * Model for wedding guests. Corresponds to the guest table.
  */
 class Guests extends MY_Model
-{    
-        // Constructor
-    public function __construct() {
-       parent::__construct('groups', 'id');	
-    }
-
-    public function get_users($key)
+{
+    /**
+     * Default constructor.
+     */
+    public function __construct()
     {
-        $ci = &get_instance();
-        return $ci->users->getGroup($key);
+        parent::__construct('guest');
     }
     
-    public function get_group_by_name($group_name)
-    {
-        $results = $this->db
-                ->from('groups')
-                ->where('name', $group_name)
-                ->get()->result();
-        
-        if(count($results) === 0)
-        {
-            return null;
-        }
-        
-        return $results[0];
-    }
-    
-    public function add_user($group_id, $user)
-    {
-        $ci = &get_instance();
-        $user['group_id'] = $group_id;
-        $ci->users->add($user);        
+    /**
+     * @param int $group_id  The ID of a guest group.
+     * @return An array of all guests of this group.
+     */
+    public function get_by_group($group_id)
+    {                
+        return $this->db->where('group_id', $group_id)
+                        ->get($this->table_name)->result();
     }
 }
 

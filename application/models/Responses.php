@@ -3,9 +3,9 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
- * models/Status.php
+ * models/Responses.php
  * 
- * Model for user accounts.
+ * Model for guest responses. Corresponds to the response table.
  */
 class Responses extends MY_Model
 {
@@ -14,10 +14,9 @@ class Responses extends MY_Model
      */
     public function __construct()
     {
-        parent::__construct('status', 'id');
+        parent::__construct('response');
     }
-    
 }
 
-/* End of file Users.php */
-/* Location: ./application/models/Users.php */
+/* End of file Responses.php */
+/* Location: ./application/models/Responses.php */

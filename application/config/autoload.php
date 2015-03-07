@@ -173,7 +173,7 @@ $autoload['language'] = array();
 |	$autoload['model'] = array('first_model' => 'first');
 */
 
-$autoload['model'] = array('guests', 'users', 'responses');
+$autoload['model'] = array('groups');
 
 /* End of file autoload.php */
 /* Location: ./application/config/autoload.php */

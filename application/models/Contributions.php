@@ -5,10 +5,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 /**
  * models/Contributions.php
  * 
- * Model for gift contributions.
+ * Model for wedding gift contributions. Corresponds to the contribution table.
  */
 class Contributions extends CI_Model
 {
+    private $table_name = 'contribution';
+    
     /**
      * Default constructor.
      */
@@ -18,47 +20,54 @@ class Contributions extends CI_Model
     }
     
     /**
-     * @param type $group_id
-     * @return type
+     * @param int $group_id  The ID of a guest group.
+     * @return array(int)  The IDs of all gifts the group contributed to.
      */
     public function get_gifts($group_id)
     {
-        $records = $this->db
-                ->from('contributions')
-                ->where('group_id', $group_id)
-                ->get()->result();
+        $gift_ids = array();
+        $query    = $this->db->where('group_id', $group_id)
+                             ->get($this->table_name);
         
-        $list = array();
-        
-        foreach ($records as $record)
+        // Extract the gift IDs from the result.
+        foreach ($query->result() as $record)
         {
-            $list[] = $record->gift_id;
+            $gift_ids[] = $record->gift_id;
         }
         
-        return $list;
+        return $gift_ids;
     }
     
+    /**
+     * Adds a contribution entry to the table (unless it already exists).
+     * @param int $group_id  The ID of the group that makes the contribution.
+     * @param int $gift_id   The ID of the gift that is being contributed to.
+     */
     public function add($group_id, $gift_id)
     {
-        $count = $this->db
-                ->from('contributions')
-                ->where('group_id', $group_id)
-                ->where('gift_id', $gift_id)
-                ->count_all_results();
+        $query = $this->db->where('group_id', $group_id)
+                          ->where('gift_id', $gift_id)
+                          ->get($this->table_name);
         
-        if ($count === 0)
+        if ($query->num_rows() == 0)
         {
             $record = new StdClass;
             $record->group_id = $group_id;
             $record->gift_id  = $gift_id;
-            $this->db->insert('contributions', $record);
+            $this->db->insert($this->table_name, $record);
         }
     }
     
+    /**
+     * Deletes a contribution entry from the table.
+     * @param int $group_id  The ID of the group that made the contribution.
+     * @param int $gift_id   The ID of the gift that has been contributed to.
+     */
     public function delete($group_id, $gift_id)
     {
-        $this->db->delete('contributions',
-                array('group_id' => $group_id, 'gift_id' => $gift_id));
+        $this->db->where('group_id', $group_id)
+                 ->where('gift_id', $gift_id)
+                 ->delete($this->table_name);
     }
 }
 
