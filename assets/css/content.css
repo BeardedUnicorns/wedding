@@ -14,6 +14,10 @@
     font-weight: bold;
 }
 
+#content li {
+    margin-left: 1.5em;
+}
+
 /* 
     Created on : Jan 31, 2015, 8:35:31 PM
     Author     : Jeffrey
