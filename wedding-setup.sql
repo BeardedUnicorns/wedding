@@ -167,6 +167,14 @@ VALUES
     ('Fruit Basket', 'yum', 21, FALSE),
     ('Goldfish', 'flush', 5, FALSE);
 
+INSERT INTO 'locations'
+    ('event_title', 'description', 'start_time', 'notes', 'address', 'html')
+VALUES
+    ('Wedding Ceremony', 'smooth criminal', '6:00pm', '', '1600 Pennsylvania
+        Avenue', ''),
+    ('Cocktail Hour', 'beat it', '7:00pm', '', 'Moscow, Russia, 103073', ''),
+    ('Reception', 'thriller', '7:00am', '', 'London, SW1A 1AA, United Kingdom',
+        '');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
