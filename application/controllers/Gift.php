@@ -9,7 +9,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  */
 class Gift extends MY_Controller
 {
-	/**
+	private $gift;
+    
+    /**
      * Default constructor.
      */
     public function __construct()
@@ -24,25 +26,61 @@ class Gift extends MY_Controller
      */
     public function index()
 	{
-        $this->data['page_body'] = 'gift';
+        if ($this->session->userdata('username') == 'admin')
+        {
+            $this->data['page_body'] = 'gift_admin';
+        }
+        else
+        {
+            $this->data['page_body'] = 'gift';
+        }
+        
         $this->data['gift_items'] = $this->gifts->all();
         $this->render();
 	}
     
     public function add()
     {
+        if ($this->input->post('title') != NULL)
+        {
+            $this->set_gift($this->gifts->create());
+            $this->gifts->add($this->gift);
+            redirect('/gift');
+        }
         
+        $this->data['page_body'] = 'gift_add';
+        $this->render();
+    }
+    
+    public function edit($gift_id)
+    {
+        $this->data = array_merge($this->data,
+                (array) $this->gifts->get($gift_id));
+        $this->data['page_body'] = 'gift_edit';
+        $this->render();
     }
     
     public function update($gift_id)
     {
-        
+        $this->set_gift($this->gifts->get($gift_id));
+        $this->gifts->update($this->gift);
+        redirect('/gift');
     }
     
     public function delete($gift_id)
     {
         $this->gifts->delete($gift_id);
         redirect('/gift');
+    }
+    
+    private function set_gift($gift)
+    {
+        $gift->title = $this->input->post('title');
+        $gift->description = $this->input->post('description');
+        $gift->cost = $this->input->post('cost');
+        $gift->contributed = $this->input->post('contributed');
+        
+        $this->gift = $gift;
     }
 }
 
