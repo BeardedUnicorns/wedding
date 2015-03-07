@@ -24,7 +24,6 @@ class Guest extends MY_Controller
      */
     public function index()
     {
-        echo 'first';
         if(!$this->session->has_userdata('username'))
         {
             redirect('/login');
@@ -42,11 +41,22 @@ class Guest extends MY_Controller
         $group = $this->guests->get_group_by_name($group_name);
         $members = $this->guests->get_users($group->id);
         
+        foreach($members as $m)
+        {
+            $m->responses = array();
+            for($i = 0; $i < 3; $i++)
+            {
+               $m->responses[$i]['name'] = $group_name . '_' . $m->first_name;
+               $m->responses[$i]['value'] = $m->first_name . '_' . $i;
+               $m->responses[$i]['checked'] = ($i == $m->status) ? "checked":"";
+            }
+        }
+        
         // jeff to do stuff
         $this->data['page_body']  = 'guest';
-        $this->data['group_name'] = $group['name'];
+        $this->data['group_name'] = $group->name;
         $this->data['members']  = $members;
-        $this->data['notes']   = $group['notes'];
+        $this->data['notes']   = $group->notes;
         $this->render();
     }
     
