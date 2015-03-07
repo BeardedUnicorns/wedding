@@ -9,8 +9,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  */
 class Gift extends MY_Controller
 {
-	private $gift;
-    
     /**
      * Default constructor.
      */
@@ -18,69 +16,146 @@ class Gift extends MY_Controller
     {
         parent::__construct();
         $this->load->model('gifts');
+        $this->load->model('contributions');
     }
     
     /**
 	 * Index page for this controller.
-     * Gets all the gift items from the Gifts model.
+     * Loads gifts and decides which view to load depending on session data.
      */
     public function index()
 	{
-        if ($this->session->userdata('username') == 'admin')
+        $gifts = $this->gifts->all();
+        $ids   = array();
+        
+        if (!$this->session->has_userdata('username'))
         {
-            $this->data['page_body'] = 'gift_admin';
+            // User is not logged in.
+            $this->data['page_body'] = 'gifts/default';
         }
         else
         {
-            $this->data['page_body'] = 'gift';
+            if ($this->session->userdata('is_admin'))
+            {
+                // User is logged in as admin.
+                $this->data['page_body'] = 'gifts/admin';
+            }
+            else
+            {
+                // User is logged in as guest.
+                $this->data['page_body'] = 'gifts/guest';
+                $ids = $this->get_contributed_gifts();
+            }
         }
         
-        $this->data['gift_items'] = $this->gifts->all();
-        $this->render();
-	}
-    
-    public function add()
-    {
-        if ($this->input->post('title') != NULL)
+        // Inject properties that are needed by the views.
+        foreach ($gifts as $gift)
         {
-            $this->set_gift($this->gifts->create());
-            $this->gifts->add($this->gift);
-            redirect('/gift');
+            $gift->status   = $gift->fulfilled ? 'Fulfilled' : 'Open';
+            $gift->disabled = $gift->fulfilled ? ' disabled' : '';
+            $gift->checked  = in_array($gift->id, $ids) ? ' checked' : '';
         }
         
-        $this->data['page_body'] = 'gift_add';
+        $this->data['gift_items'] = $gifts;
         $this->render();
     }
     
-    public function edit($gift_id)
+    /**
+     * Updates the user's gift contributions.
+     */
+    public function contribute()
     {
-        $this->data = array_merge($this->data,
-                (array) $this->gifts->get($gift_id));
-        $this->data['page_body'] = 'gift_edit';
-        $this->render();
-    }
-    
-    public function update($gift_id)
-    {
-        $this->set_gift($this->gifts->get($gift_id));
-        $this->gifts->update($this->gift);
+        $group = $this->guests->get_group_by_name(
+                $this->session->userdata('username'));
+        
+        $gifts = $this->gifts->all();
+        
+        foreach ($gifts as $gift)
+        {
+            if ($this->input->post('check_' . $gift->id))
+            {
+                $this->contributions->add($group->id, $gift->id);
+            }
+            else
+            {
+                $this->contributions->delete($group->id, $gift->id);
+            }
+        }
+        
         redirect('/gift');
     }
     
+    /**
+     * Lets the admin add a new gift entry.
+     */
+    public function add()
+    {
+        if ($this->input->post('submit'))
+        {
+            // User has submitted the form.
+            $gift = $this->gifts->create();
+            $this->populate_from_input($gift);
+            $this->gifts->add($gift);
+            redirect('/gift');
+        }
+        
+        $this->data['title']       = '';
+        $this->data['cost']        = '';
+        $this->data['description'] = '';
+        $this->data['page_body']   = 'gifts/edit';
+        $this->render();
+    }
+    
+    /**
+     * Lets the admin edit an existing gift entry.
+     */
+    public function edit($gift_id)
+    {
+        $gift = $this->gifts->get($gift_id);
+        
+        if ($this->input->post('submit'))
+        {
+            // User has submitted the form.
+            $this->populate_from_input($gift);
+            $this->gifts->update($gift);
+            redirect('/gift');
+        }
+        
+        $this->data['title']       = $gift->title;
+        $this->data['cost']        = $gift->cost;
+        $this->data['description'] = $gift->description;
+        $this->data['page_body']   = 'gifts/edit';
+        $this->render();
+    }
+    
+    /**
+     * Deletes a specified gift entry.
+     */
     public function delete($gift_id)
     {
         $this->gifts->delete($gift_id);
         redirect('/gift');
     }
     
-    private function set_gift($gift)
+    /**
+     * Returns an array contributed gift IDs.
+     */
+    private function get_contributed_gifts()
     {
-        $gift->title = $this->input->post('title');
-        $gift->description = $this->input->post('description');
-        $gift->cost = $this->input->post('cost');
-        $gift->contributed = $this->input->post('contributed');
+        $group = $this->guests->get_group_by_name(
+                $this->session->userdata('username'));
         
-        $this->gift = $gift;
+        return $this->contributions->get_gifts($group->id);
+    }
+    
+    /**
+     * Updates the given gift with the form input.
+     */
+    private function populate_from_input($gift)
+    {
+        $gift->title       = $this->input->post('title');
+        $gift->description = $this->input->post('description');
+        $gift->cost        = $this->input->post('cost');
     }
 }
 

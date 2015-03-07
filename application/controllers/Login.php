@@ -32,6 +32,7 @@ class Login extends MY_Controller
     public function user()
     {
         $this->session->set_userdata('username', 'guest');
+        $this->session->set_userdata('is_admin', false);
         redirect('/');
     }
     
@@ -41,6 +42,7 @@ class Login extends MY_Controller
     public function admin()
     {
         $this->session->set_userdata('username', 'admin');
+        $this->session->set_userdata('is_admin', true);
         redirect('/');
     }
     

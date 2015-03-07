@@ -25,7 +25,7 @@ DROP TABLE IF EXISTS `groups`;
 DROP TABLE IF EXISTS `users`;
 DROP TABLE IF EXISTS `status`;
 DROP TABLE IF EXISTS `gifts`;
-DROP TABLE IF EXISTS `gift_contributions`;
+DROP TABLE IF EXISTS `contributions`;
 DROP TABLE IF EXISTS `locations`;
 
 
@@ -83,23 +83,23 @@ CREATE TABLE IF NOT EXISTS `locations` (
 -- Table structure for table `gifts`
 --
 CREATE TABLE IF NOT EXISTS `gifts` (
-  `id` 			int(4) 			NOT NULL	AUTO_INCREMENT,
-  `title` 		varchar(64)		NOT NULL,
-  `description` text            NOT NULL,
-  `cost` 		numeric(15,2) 	NOT NULL,
-  `contributed`	numeric(15,2)	NOT NULL 	DEFAULT 0,
-  `photo`		varchar(128),
-  PRIMARY KEY 	(`id`)
+  `id`              int(4)          NOT NULL    AUTO_INCREMENT,
+  `title`           varchar(64)     NOT NULL,
+  `description`     text            NOT NULL,
+  `cost`            numeric(15,2)   NOT NULL,
+  `fulfilled`       bool            NOT NULL    DEFAULT FALSE,
+  `photo`           varchar(128),
+  PRIMARY KEY       (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
--- Table structure for table `gift_contributions`
+-- Table structure for table `contributions`
 --
-CREATE TABLE IF NOT EXISTS `gift_contributions` (
+CREATE TABLE IF NOT EXISTS `contributions` (
   `id`              int(4)          NOT NULL    AUTO_INCREMENT,
   `gift_id`         int(4)          NOT NULL,
   `group_id`        int(4)          NOT NULL,
-  `contributed`     numeric(15,2)   NOT NULL    DEFAULT 0,
+--  `contributed`     numeric(15,2)   NOT NULL    DEFAULT 0,
   PRIMARY KEY       (`id`),
   FOREIGN KEY       (gift_id)       REFERENCES  gifts(id),
   FOREIGN KEY       (group_id)      REFERENCES  groups(id)
@@ -112,7 +112,8 @@ INSERT INTO `status` (`id`, `description`) VALUES
 
 INSERT INTO `groups` (`name`, `password`, `notes`) VALUES
 ('The Coutlees', '12345', 'We are a group'),
-('Mom', 'mom', 'We are also a group');
+('Mom', 'mom', 'We are also a group'),
+('guest', '', 'This is a test group');
 
 INSERT INTO `users` (`group_id`, `first_name`, `last_name`, `email`, `status`) VALUES
 (1, 'Shane', 'Coutlee', 'scoutlee@here.com', 0),
@@ -122,12 +123,12 @@ INSERT INTO `users` (`group_id`, `first_name`, `last_name`, `email`, `status`) V
 (2, 'Suzanne', 'VanElslander', 'svan@here.com', 2),
 (2, 'Noah', 'Bayntun', '', 2);
 
-INSERT INTO `gifts` (`title`, `description`, `cost`, `contributed`) VALUES
-('TV', 'great!', 600, 0.5),
-('HoneyMoon', 'Greece!', 3000, 0.2),
-('Toaster', 'meh', 36, 0.0),
-('Fruit Basket', 'yum', 21, 1.0),
-('Goldfish', 'flush', 5, 0.0);
+INSERT INTO `gifts` (`title`, `description`, `cost`, `fulfilled`) VALUES
+('TV', 'great!', 600, FALSE),
+('HoneyMoon', 'Greece!', 3000, FALSE),
+('Toaster', 'meh', 36, TRUE),
+('Fruit Basket', 'yum', 21, FALSE),
+('Goldfish', 'flush', 5, FALSE);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
