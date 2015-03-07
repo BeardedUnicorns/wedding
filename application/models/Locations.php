@@ -7,7 +7,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * 
  * Model for location records.
  */
-class Locations extends CI_Model
+class Locations extends MY_Model
 {
     private $data = array(
         array('id' => '1', 'name' => 'Wedding Service', 'address' => 'King\'s Landing',
