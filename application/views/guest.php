@@ -1,6 +1,6 @@
 <h2>Guest <span>Response</span></h2>
 
-<form>
+<form action="/guest/update/{id}" method="post">
 
     <table id="group_list">
 
@@ -26,7 +26,7 @@
     
     <p>Notes:
         <br/>
-        <textarea name="notes" rows="10" cols="60" >{notes}</textarea>
+        <textarea name="notes" value="notes" rows="10" cols="60" >{notes}</textarea>
     </p>
         
     <input type="submit" value="Submit">

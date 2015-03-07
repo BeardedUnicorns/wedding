@@ -47,12 +47,12 @@ class Guest extends MY_Controller
             for($i = 0; $i < 3; $i++)
             {
                $m->responses[$i]['name'] = $group_name . '_' . $m->first_name;
-               $m->responses[$i]['value'] = $m->first_name . '_' . $i;
+               $m->responses[$i]['value'] = '' . $i;
                $m->responses[$i]['checked'] = ($i == $m->status) ? "checked":"";
             }
         }
         
-        // jeff to do stuff
+        $this->data['id'] = $group->id;
         $this->data['page_body']  = 'guest';
         $this->data['group_name'] = $group->name;
         $this->data['members']  = $members;
@@ -64,6 +64,33 @@ class Guest extends MY_Controller
     public function admin()
     {
         echo 'admin things';
+    }
+    
+    public function update($group_id)
+    {
+        $this->set_group($this->guests->get($group_id));
+        $this->guests->update($this->group);
+        foreach($this->members as $m)
+        {
+            $this->users->update($m);
+        }
+        redirect('/guest');
+        //redirect('/update_success');
+    }
+    
+    private function set_group($group)
+    {
+        $group->notes = $this->input->post('notes');
+        $members = $this->guests->get_users($group->id);
+        
+        foreach($members as $m)
+        {
+            unset($m->responses);
+            $m->status = $this->input->post($group->name . '_' . $m->first_name);
+        } 
+        
+        $this->group = $group;
+        $this->members = $members;
     }
 }
 
