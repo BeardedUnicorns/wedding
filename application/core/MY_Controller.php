@@ -40,7 +40,7 @@ class MY_Controller extends CI_Controller
     public function render()
     {
         $this->data['menu'] = build_menu(
-                $this->choices, $this->data['page_body']);
+                $this->choices, $this->uri->segment(1));
         
         $this->data['header']  = $this->parser->parse(
                 '_header', $this->data, true);

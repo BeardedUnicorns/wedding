@@ -1,4 +1,4 @@
-<h2>Login</h2>
+<h2>Please <span>log in</span></h2>
 
 <p>You are currently not logged in.</p>
 <p>

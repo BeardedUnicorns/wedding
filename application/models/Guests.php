@@ -22,8 +22,17 @@ class Guests extends MY_Model
     
     public function get_group_by_name($group_name)
     {
-        $this->db->from('groups')->where('name', $group_name);
-        return $this->db->get()->result()[0];
+        $results = $this->db
+                ->from('groups')
+                ->where('name', $group_name)
+                ->get()->result();
+        
+        if(count($results) === 0)
+        {
+            return null;
+        }
+        
+        return $results[0];
     }
     
     public function add_user($group_id, $user)
