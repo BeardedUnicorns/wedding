@@ -1,9 +1,21 @@
-<h2>Guest <span>List</span></h2>
-<h3>Group Name:  {group_name}</h3>
+<h2>Group Name: <span>{group_name}</span></h2>
     
     <div id="group_info">
-        <input type="text" name="group_{id}" id="group_{id}" value="{group_name}">
-        <input type="text" name="password_{id}" id="password_{id}" value="{group_password}">
+        <table id="group_table">
+            <tr>
+                <th>Group Name</th>
+                <th>Password</th>
+                <th>Admin</th>
+            </tr>
+             <tr>
+                <td>{group_name}</td>
+                <td>{password}</td>
+                <td>
+                    <a href="/guest/edit_group_admin/{id}">Edit</a>
+                    <a href="/guest/delete_group/{id}">Delete</a>
+                </td>
+            </tr>
+        </table>
     
         <h4>Notes:</h4>
         <p>{notes}</p>
@@ -11,6 +23,8 @@
     </div>
     
     <p><a href="/guest/add_guest/{id}">Add New Guest</a></p>
+    
+    <h2>Guest <span>List</span></h2>
 
     <table id="group_list">
 
