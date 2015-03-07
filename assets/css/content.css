@@ -10,6 +10,10 @@
     text-decoration: underline;
 }
 
+#content strong {
+    font-weight: bold;
+}
+
 /* 
     Created on : Jan 31, 2015, 8:35:31 PM
     Author     : Jeffrey
