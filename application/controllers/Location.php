@@ -33,12 +33,22 @@ class Location extends MY_Controller
         //  return;
         // }
         
-        
         $this->data['page_body'] = 'location';
         $this->data['places_list'] = $locations;
         $this->render();
     }
     
+    /**
+     * Loads the admin version of this page.
+     */
+    public function admin()
+    {
+        if (!$this->session->userdata('is_admin'))
+        {
+            // No access if not admin.
+            redirect('/not_admin');
+        }
+    }
 }
 
 /* End of file Location.php */
