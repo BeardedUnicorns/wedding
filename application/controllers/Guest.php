@@ -100,7 +100,7 @@ class Guest extends MY_Controller
             $this->get_guests_admin($group);
         }
         
-        $this->data['page_body']  = 'guests/all_groups';
+        $this->data['page_body']  = 'guests/admin_all';
         $this->data['groups'] = $groups;
         $this->render();
     }
