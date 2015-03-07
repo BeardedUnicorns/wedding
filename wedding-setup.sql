@@ -167,6 +167,15 @@ VALUES
     ('Fruit Basket', 'yum', 21, FALSE),
     ('Goldfish', 'flush', 5, FALSE);
 
+INSERT INTO `location`
+    (`event_title`, `description`, `start_time`, `notes`, `address`, `html`)
+VALUES
+    ('Wedding Ceremony', 'smooth criminal', '6:00pm', '', '1600 Pennsylvania
+        Avenue', '<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12420.601576604287!2d-77.03653!3d38.897676!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x715969d86d0b76bf!2sThe+White+House!5e0!3m2!1sen!2sca!4v1425762499415" width="600" height="450" frameborder="0" style="border:0"></iframe>'),
+    ('Cocktail Hour', 'beat it', '7:00pm', '', 'Moscow, Russia, 103073', 
+        '<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d17962.98372874596!2d37.617499!3d55.752023!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xa886bf5a3d9b2e68!2sThe+Moscow+Kremlin!5e0!3m2!1sen!2sca!4v1425762583309" width="600" height="450" frameborder="0" style="border:0"></iframe>'),
+   ('Reception', 'thriller', '7:00am', '', 'London, SW1A 1AA, United Kingdom',
+        '<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d9934.583867758007!2d-0.14189!3d51.501364!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xa26abf514d902a7!2sBuckingham+Palace!5e0!3m2!1sen!2sca!4v1425762643806" width="600" height="450" frameborder="0" style="border:0"></iframe>');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

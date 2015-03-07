@@ -24,9 +24,30 @@ class Location extends MY_Controller
      */
     public function index()
     {
+        $locations = $this->locations->all();
+        
+        // if ($this->session->userdata('is_admin'))
+        // {
+        //  // User is logged in as admin.
+        //  $this->admin();
+        //  return;
+        // }
+        
         $this->data['page_body'] = 'location';
-        $this->data['places_list'] = $this->locations->get_all();;
+        $this->data['places_list'] = $locations;
         $this->render();
+    }
+    
+    /**
+     * Loads the admin version of this page.
+     */
+    public function admin()
+    {
+        if (!$this->session->userdata('is_admin'))
+        {
+            // No access if not admin.
+            redirect('/not_admin');
+        }
     }
 }
 

@@ -2,11 +2,11 @@
 
 <ul>
     {places_list}
-    <p>{name}</p>
+    <p>{event_title}</p>
+    {description}
+    {start_time}
+    {notes}
     {address}
-    {events}
-        <li>{name} - {time}</li>
-    {/events}
-    {map}
+    {html}
     {/places_list}
 </ul>
