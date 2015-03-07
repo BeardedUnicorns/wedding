@@ -52,19 +52,49 @@ class Guest extends MY_Controller
     // the admin version of the page
     public function admin()
     {
+        if( !($this->session->userdata('username') === 'admin') )
+        {
+            redirect('/not_admin');
+        }
+        
         $groups = $this->guests->all();
         foreach($groups as $g)
         {
             $this->get_members_admin($g);
         }
         
-        $this->data['page_body']  = 'guest_admin';
+        $this->data['page_body']  = 'groups_all';
         $this->data['groups'] = $groups;
+        $this->render();
+    }
+    
+    // the admin version of the page
+    public function admin_show_group($group_id)
+    {
+        if( !($this->session->userdata('username') === 'admin') )
+        {
+            redirect('/not_admin');
+        }
+        
+        $group = $this->guests->get($group_id);
+        $this->get_members_admin($group);
+
+        $this->data['page_body']  = 'guest_admin';
+        $this->data['id'] = $group->id;
+        $this->data['group_name'] = $group->name;
+        $this->data['group_password'] = $group->password;
+        $this->data['members']  = $group->members;
+        $this->data['notes']   = $group->notes;
         $this->render();
     }
     
     public function update($group_id)
     {
+        if( !($this->session->userdata('username') === 'admin') )
+        {
+            redirect('/not_admin');
+        }
+        
         $this->set_group($this->guests->get($group_id));
         $this->guests->update($this->group);
         foreach($this->members as $m)
