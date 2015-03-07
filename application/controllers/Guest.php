@@ -141,10 +141,46 @@ class Guest extends MY_Controller
          $guest->phone = $this->input->post('phone');
          $guest->email = $this->input->post('email');
          $guest->group_id = $group_id;
+         $guest->status = 2;
          
          $this->users->add($guest);
-         redirect('/guest/admin_show_group/' . $group_id);
+         redirect('/guest/admin_show_group/' . $group_id);   
+    }
+    
+    public function edit_user($group_id, $user_id)
+    {
+        if( !($this->session->userdata('username') === 'admin') )
+        {
+            redirect('/not_admin');
+        }
+        
+        $user = $this->users->get($user_id);
+        
+        $this->data['page_body']  = 'guest_edit';
+        $this->data['id'] = $user_id;
+        $this->data['group_id'] = $user->group_id;
+        $this->data['first_name'] = $user->first_name;
+        $this->data['last_name'] = $user->last_name;
+        $this->data['phone'] = $user->phone;
+        $this->data['email'] = $user->email;
+        $this->render();
+    }
+    
+    public function edit_guest($user_id)
+    {
+        if( !($this->session->userdata('username') === 'admin') )
+        {
+            redirect('/not_admin');
+        }
+        
+         $guest = $this->users->get($user_id);
+         $guest->first_name = $this->input->post('first_name');
+         $guest->last_name = $this->input->post('last_name');
+         $guest->phone = $this->input->post('phone');
+         $guest->email = $this->input->post('email');
          
+         $this->users->update($guest);
+         redirect('/guest/admin_show_group/' . $guest->group_id);   
     }
     
     private function set_group($group)
