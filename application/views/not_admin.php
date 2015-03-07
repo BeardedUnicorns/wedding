@@ -1,3 +1,2 @@
-<h1>Sorry, you can't do that...</h1>
-<h1>You're not an admin!</h1>
-
+<h2>Access <span>denied</span></h2>
+<p>You have to be an admin to do that!</p>

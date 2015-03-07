@@ -21,114 +21,152 @@ SET time_zone = "+00:00";
 --
 
 -- --------------------------------------------------------
-DROP TABLE IF EXISTS `groups`;
-DROP TABLE IF EXISTS `users`;
-DROP TABLE IF EXISTS `status`;
-DROP TABLE IF EXISTS `gifts`;
-DROP TABLE IF EXISTS `contributions`;
-DROP TABLE IF EXISTS `locations`;
+DROP TABLE IF EXISTS `location`;
+DROP TABLE IF EXISTS `contribution`;
+DROP TABLE IF EXISTS `gift`;
+DROP TABLE IF EXISTS `guest`;
+DROP TABLE IF EXISTS `group`;
+DROP TABLE IF EXISTS `response`;
 
 
 --
--- Table structure for table `groups`
+-- Table structure for table `response`
 --
-CREATE TABLE IF NOT EXISTS `groups` (
-  `id`          int(4)      NOT NULL AUTO_INCREMENT,
-  `name`        varchar(64) NOT NULL,
-  `password`    varchar(32) NOT NULL,
-  `notes`       text,
-  PRIMARY KEY   (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+CREATE TABLE IF NOT EXISTS `response`
+(
+  `id`              int(1)          NOT NULL,
+  `description`     varchar(128)    NOT NULL,
+
+  PRIMARY KEY (`id`)
+)
+ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Table structure for table `status`
+-- Table structure for table `group`
 --
+CREATE TABLE IF NOT EXISTS `group`
+(
+  `id`              int(4)          NOT NULL AUTO_INCREMENT,
+  `name`            varchar(64)     NOT NULL,
+  `username`        varchar(64)     NOT NULL,
+  `password`        varchar(32)     NOT NULL,
+  `notes`           text            NULL,
 
-CREATE TABLE IF NOT EXISTS `status` (
-  `id`          int(1)          NOT NULL,
-  `description` varchar(128)    NOT NULL,
-  PRIMARY KEY   (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8  ;
+  PRIMARY KEY (`id`)
+)
+ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Table structure for table `users`
+-- Table structure for table `guest`
 --
-
-CREATE TABLE IF NOT EXISTS `users` (
-  `id`              int(4)          NOT NULL    AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS `guest`
+(
+  `id`              int(4)          NOT NULL AUTO_INCREMENT,
   `group_id`        int(4)          NOT NULL,
+  `response_id`     int(1)          NOT NULL,
   `first_name`      varchar(64)     NOT NULL,
   `last_name`       varchar(64)     NOT NULL,
-  `email`           varchar(128),
-  `phone`           varchar(12),
-  `status`          int(1)         NOT NULL,
-  PRIMARY KEY       (`id`),
-  FOREIGN KEY       (group_id)      REFERENCES  groups(id),
-  FOREIGN KEY       (status)        REFERENCES  status(id)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `email`           varchar(128)    NULL,
+  `phone`           varchar(12)     NULL,
 
-CREATE TABLE IF NOT EXISTS `locations` (
-  `id`              int(4)          NOT NULL     AUTO_INCREMENT,
-  `event_title`     varchar(64)     NOT NULL,
-  `description`     varchar(1024)   NOT NULL,
-  `start_time`      varchar(64)     NOT NULL,
-  `notes`           varchar(1024),
-  `address`         varchar(256)    NOT NULL,
-  `html`            text            NOT NULL,
-  PRIMARY KEY       (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`group_id`)    REFERENCES `group`    (`id`) ON DELETE CASCADE,
+  FOREIGN KEY (`response_id`) REFERENCES `response` (`id`) ON DELETE RESTRICT
+)
+ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Table structure for table `gifts`
+-- Table structure for table `gift`
 --
-CREATE TABLE IF NOT EXISTS `gifts` (
-  `id`              int(4)          NOT NULL    AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS `gift`
+(
+  `id`              int(4)          NOT NULL AUTO_INCREMENT,
   `title`           varchar(64)     NOT NULL,
   `description`     text            NOT NULL,
   `cost`            numeric(15,2)   NOT NULL,
-  `fulfilled`       bool            NOT NULL    DEFAULT FALSE,
-  `photo`           varchar(128),
-  PRIMARY KEY       (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `fulfilled`       bool            NOT NULL DEFAULT FALSE,
+
+  PRIMARY KEY (`id`)
+)
+ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Table structure for table `contributions`
+-- Table structure for table `contribution`
 --
-CREATE TABLE IF NOT EXISTS `contributions` (
-  `id`              int(4)          NOT NULL    AUTO_INCREMENT,
-  `gift_id`         int(4)          NOT NULL,
+CREATE TABLE IF NOT EXISTS `contribution`
+(
   `group_id`        int(4)          NOT NULL,
---  `contributed`     numeric(15,2)   NOT NULL    DEFAULT 0,
-  PRIMARY KEY       (`id`),
-  FOREIGN KEY       (gift_id)       REFERENCES  gifts(id),
-  FOREIGN KEY       (group_id)      REFERENCES  groups(id)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-    
-INSERT INTO `status` (`id`, `description`) VALUES
-(0, 'yes'),
-(1, 'no'),
-(2, 'unknown');
+  `gift_id`         int(4)          NOT NULL,
+  `quantity`        int(2)          NOT NULL DEFAULT 1,
 
-INSERT INTO `groups` (`name`, `password`, `notes`) VALUES
-('The Coutlees', '12345', 'We are a group'),
-('Mom', 'mom', 'We are also a group'),
-('guest', '', 'This is a test group');
+  PRIMARY KEY (`group_id`, `gift_id`),
+  FOREIGN KEY (`group_id`)  REFERENCES `group` (`id`) ON DELETE CASCADE,
+  FOREIGN KEY (`gift_id`)   REFERENCES `gift`  (`id`) ON DELETE CASCADE
+  
+)
+ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO `users` (`group_id`, `first_name`, `last_name`, `email`, `status`) VALUES
-(1, 'Shane', 'Coutlee', 'scoutlee@here.com', 0),
-(1, 'Karen', 'Coutlee', 'kcoutlee@here.com', 1),
-(1, 'Paige', 'Coutlee', '', 0),
-(1, 'Maya', 'Coutlee', '', 0),
-(2, 'Suzanne', 'VanElslander', 'svan@here.com', 2),
-(2, 'Noah', 'Bayntun', '', 2);
+--
+-- Table structure for table `location`
+--
+CREATE TABLE IF NOT EXISTS `location`
+(
+  `id`              int(4)          NOT NULL AUTO_INCREMENT,
+  `event_title`     varchar(64)     NOT NULL,
+  `description`     varchar(1024)   NOT NULL,
+  `start_time`      varchar(64)     NOT NULL,
+  `notes`           varchar(1024)   NULL,
+  `address`         varchar(256)    NOT NULL,
+  `html`            text            NOT NULL,
 
-INSERT INTO `gifts` (`title`, `description`, `cost`, `fulfilled`) VALUES
-('TV', 'great!', 600, FALSE),
-('HoneyMoon', 'Greece!', 3000, FALSE),
-('Toaster', 'meh', 36, TRUE),
-('Fruit Basket', 'yum', 21, FALSE),
-('Goldfish', 'flush', 5, FALSE);
+  PRIMARY KEY (`id`)
+)
+ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+--
+-- Sample data
+--
+
+-- --------------------------------------------------------
+
+INSERT INTO `response`
+    (`id`, `description`)
+VALUES
+    (0, 'Yes'),
+    (1, 'No'),
+    (2, 'Unknown');
+
+INSERT INTO `group`
+    (`name`, `username`, `password`, `notes`)
+VALUES
+    ('The Coutlees', 'coutlees', '12345', 'We are a group'),
+    ('Mom', 'mom', 'mom', 'We are also a group'),
+    ('The Test Group', 'guest', '', 'This is the ultimate test group');
+
+INSERT INTO `guest`
+    (`group_id`, `response_id`, `first_name`, `last_name`, `email`)
+VALUES
+    (1, 0, 'Shane', 'Coutlee', 'scoutlee@here.com'),
+    (1, 1, 'Karen', 'Coutlee', 'kcoutlee@here.com'),
+    (1, 0, 'Paige', 'Coutlee', NULL),
+    (1, 0, 'Maya', 'Coutlee', NULL),
+    (2, 2, 'Suzanne', 'VanElslander', 'svan@here.com'),
+    (2, 2, 'Noah', 'Bayntun', NULL),
+    (3, 1, 'Homer', 'Simpson', 'homer@simpson.com'),
+    (3, 0, 'Marge', 'Simpson', NULL),
+    (3, 2, 'Bart', 'Simpson', 'bart@simpson.com'),
+    (3, 2, 'Lisa', 'Simpson', 'lisa@simpson.com');
+
+INSERT INTO `gift`
+    (`title`, `description`, `cost`, `fulfilled`)
+VALUES
+    ('TV', 'great!', 600, FALSE),
+    ('HoneyMoon', 'Greece!', 3000, FALSE),
+    ('Toaster', 'meh', 36, TRUE),
+    ('Fruit Basket', 'yum', 21, FALSE),
+    ('Goldfish', 'flush', 5, FALSE);
+
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

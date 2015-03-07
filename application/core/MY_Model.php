@@ -1,167 +1,152 @@
 <?php
 
-if (!defined('BASEPATH'))
-{
-    exit('No direct script access allowed');
-}
+defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
- * Generic data access model, for an RDB.
- *
- * @author		JLP
- * @copyright           Copyright (c) 2010-2014, James L. Parry
- * ------------------------------------------------------------------------
+ * core/MY_Model.php
+ * 
+ * Base model for a database table.
  */
-class MY_Model extends CI_Model {
-
-    protected $_tableName;            // Which table is this a model for?
-    protected $_keyField;             // name of the primary key field
-
-//---------------------------------------------------------------------------
-//  Housekeeping methods
-//---------------------------------------------------------------------------
+class MY_Model extends CI_Model
+{
+    protected $table_name;
+    protected $primary_key;
 
     /**
      * Constructor.
-     * @param string $tablename Name of the RDB table
-     * @param string $keyfield  Name of the primary key field
+     * @param string @table_name   The name of the database table.
+     * @param string $primary_key  The name of the primary key field.
      */
-    function __construct($tablename = null, $keyfield = 'id') {
+    public function __construct($table_name = null, $primary_key = 'id')
+    {
         parent::__construct();
-
-        if ($tablename == null)
-        {
-            $this->_tableName = get_class($this);
-        }
-        else
-        {
-            $this->_tableName = $tablename;
-        }
-
-        $this->_keyField = $keyfield;
-    }
-
-//---------------------------------------------------------------------------
-//  Utility methods
-//---------------------------------------------------------------------------
-
-    /**
-     * Return the number of records in this table.
-     * @return int The number of records in this table
-     */
-    function size() {
-        $query = $this->db->get($this->_tableName);
-        return $query->num_rows();
+        $this->table_name  = $table_name;
+        $this->primary_key = $primary_key;
     }
 
     /**
-     * Return the field names in this table, from the table metadata.
-     * @return array(string) The field names in this table
+     * Creates an empty record.
+     * @return \StdClass An empty record.
      */
-    function fields() {
-        return $this->db->list_fields($this->_tableName);
-    }
-
-//---------------------------------------------------------------------------
-//  C R U D methods
-//---------------------------------------------------------------------------
-    // Create a new data object.
-    // Only use this method if intending to create an empty record and then
-    // populate it.
-    function create() {
-        $names = $this->db->list_fields($this->_tableName);
-        $object = new StdClass;
-        foreach ($names as $name)
+    public function create()
+    {
+        $record = new StdClass;
+        
+        foreach ($this->fields() as $field)
         {
-            $object->$name = "";
+            $record->$field = '';
         }
-        return $object;
+        
+        return $record;
     }
-
-    // Add a record to the DB
-    function add($record) {
-        // convert object to associative array, if needed
-        if (is_object($record)) {
-            $data = get_object_vars($record);
-        } else {
-            $data = $record;
-        }
-        // update the DB table appropriately
-        $this->db->insert($this->_tableName, $data);
-    }
-
-    // Retrieve an existing DB record as an object
-    function get($key) {
-        $this->db->where($this->_keyField, $key);
-        $query = $this->db->get($this->_tableName);
-        if ($query->num_rows() < 1)
+    
+    /**
+     * Retrives a record from the table.
+     * @param $key  The primary key value of the record.
+     * @return  The record with the given key.
+     */
+    public function get($key)
+    {
+        $query = $this->db->where($this->primary_key, $key)
+                          ->get($this->table_name);
+        
+        if ($query->num_rows() == 0)
         {
             return null;
         }
+        
         return $query->row();
     }
 
-    // Update a record in the DB
-    function update($record) {
-        // convert object to associative array, if needed
-        if (is_object($record)) {
-            $data = get_object_vars($record);
-        } else {
-            $data = $record;
-        }
-        // update the DB table appropriately
-        $key = $data[$this->_keyField];
-        $this->db->where($this->_keyField, $key);
-        $this->db->update($this->_tableName, $data);
-    }
-
-    // Delete a record from the DB
-    function delete($key) {
-        $this->db->where($this->_keyField, $key);
-        $this->db->delete($this->_tableName);
-    }
-
-    // Determine if a key exists
-    function exists($key) {
-        $this->db->where($this->_keyField, $key);
-        $query = $this->db->get($this->_tableName);
-        if ($query->num_rows() < 1)
+    /**
+     * Adds a new record to the table.
+     * @param $record  The record to be added.
+     */
+    public function add($record)
+    {
+        if (is_object($record))
         {
-            return false;
+            $record = get_object_vars($record);
         }
-        return true;
+        
+        $this->db->insert($this->table_name, $record);
     }
-
-//---------------------------------------------------------------------------
-//  Aggregate methods
-//---------------------------------------------------------------------------
-    // Return all records as an array of objects
-    function all() {
-        $this->db->order_by($this->_keyField, 'asc');
-        return $this->db->get($this->_tableName)->result();
-    }
-
-    // Return all records as a result set
-    function results() {
-        $this->db->order_by($this->_keyField, 'asc');
-        return $this->db->get($this->_tableName);
-    }
-
-    // Determine the highest key used
-    function highest() {
-	$key = $this->_keyField;
-        $this->db->select_max($key);
-        $query = $this->db->get($this->_tableName);
-        $result = $query->result();
-        if (count($result) > 0)
+    
+    /**
+     * Updates a record in the table.
+     * @param $record  The record to be updated.
+     */
+    public function update($record)
+    {
+        if (is_object($record))
         {
-            return $result[0]->$key;
+            $record = get_object_vars($record);
         }
-        else
+        
+        $this->db->where($this->primary_key, $record[$this->primary_key])
+                 ->update($this->table_name, $record);
+    }
+    
+    /**
+     * Deletes a record from the table.
+     * @param $key  The primary key of the record to be deleted.
+     */
+    public function delete($key)
+    {
+        $this->db->where($this->primary_key, $key)->delete($this->table_name);
+    }
+
+    /**
+     * @param $key  A primary key value.
+     * @return boolean  Whether a record with this key exists.
+     */
+    public function exists($key)
+    {
+        return $this->db->where($this->primary_key, $key)
+                        ->get($this->table_name)->num_rows() > 0;
+    }
+    
+    /**
+     * @return All records as an array of objects.
+     */
+    public function all()
+    {
+        return $this->db->order_by($this->primary_key, 'asc')
+                        ->get($this->table_name)->result();
+    }
+
+    /**
+     * @return The highest primary key value used.
+     */
+    public function highest()
+    {
+        $key   = $this->primary_key;
+        $query = $this->db->select_max($key)->get($this->table_name);
+        
+        if ($query->num_rows() == 0)
         {
             return null;
         }
+        
+        return $query->row()->$key;
+    }
+    
+    /**
+     * @return int  The number of records in this table.
+     */
+    public function size()
+    {
+        return $this->db->get($this->table_name)->num_rows();
+    }
+
+    /**
+     * @return array(string)  The field names in this table.
+     */
+    public function fields()
+    {
+        return $this->db->list_fields($this->table_name);
     }
 }
 
-/* End of file */
+/* End of file MY_Model.php */
+/* Location: ./application/core/MY_Model.php */

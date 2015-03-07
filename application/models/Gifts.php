@@ -5,7 +5,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 /**
  * models/Gifts.php
  * 
- * Model for gift items.
+ * Model for wedding gifts. Corresponds to the gift table.
  */
 class Gifts extends MY_Model
 {
@@ -14,7 +14,7 @@ class Gifts extends MY_Model
      */
     public function __construct()
     {
-        parent::__construct('gifts', 'id');
+        parent::__construct('gift');
     }
 }
 

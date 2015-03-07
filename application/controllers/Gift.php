@@ -15,8 +15,8 @@ class Gift extends MY_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('gifts');
         $this->load->model('contributions');
+        $this->load->model('gifts');
     }
     
     /**
@@ -38,7 +38,7 @@ class Gift extends MY_Controller
             if ($this->session->userdata('is_admin'))
             {
                 // User is logged in as admin.
-                $this->data['page_body'] = 'gifts/admin';
+                $this->data['page_body'] = 'gifts/admin_all';
             }
             else
             {
@@ -65,7 +65,13 @@ class Gift extends MY_Controller
      */
     public function contribute()
     {
-        $group = $this->guests->get_group_by_name(
+        if (!$this->session->has_userdata('username'))
+        {
+            // No access if not logged in.
+            redirect('/login');
+        }
+        
+        $group = $this->groups->get_by_username(
                 $this->session->userdata('username'));
         
         $gifts = $this->gifts->all();
@@ -90,6 +96,12 @@ class Gift extends MY_Controller
      */
     public function add()
     {
+        if (!$this->session->userdata('is_admin'))
+        {
+            // No access if not admin.
+            redirect('/not_admin');
+        }
+        
         if ($this->input->post('submit'))
         {
             // User has submitted the form.
@@ -102,7 +114,7 @@ class Gift extends MY_Controller
         $this->data['title']       = '';
         $this->data['cost']        = '';
         $this->data['description'] = '';
-        $this->data['page_body']   = 'gifts/edit';
+        $this->data['page_body']   = 'gifts/admin_one';
         $this->render();
     }
     
@@ -111,6 +123,12 @@ class Gift extends MY_Controller
      */
     public function edit($gift_id)
     {
+        if (!$this->session->userdata('is_admin'))
+        {
+            // No access if not admin.
+            redirect('/not_admin');
+        }
+        
         $gift = $this->gifts->get($gift_id);
         
         if ($this->input->post('submit'))
@@ -124,7 +142,7 @@ class Gift extends MY_Controller
         $this->data['title']       = $gift->title;
         $this->data['cost']        = $gift->cost;
         $this->data['description'] = $gift->description;
-        $this->data['page_body']   = 'gifts/edit';
+        $this->data['page_body']   = 'gifts/admin_one';
         $this->render();
     }
     
@@ -133,6 +151,12 @@ class Gift extends MY_Controller
      */
     public function delete($gift_id)
     {
+        if (!$this->session->userdata('is_admin'))
+        {
+            // No access if not admin.
+            redirect('/not_admin');
+        }
+        
         $this->gifts->delete($gift_id);
         redirect('/gift');
     }
@@ -142,7 +166,7 @@ class Gift extends MY_Controller
      */
     private function get_contributed_gifts()
     {
-        $group = $this->guests->get_group_by_name(
+        $group = $this->groups->get_by_username(
                 $this->session->userdata('username'));
         
         return $this->contributions->get_gifts($group->id);
