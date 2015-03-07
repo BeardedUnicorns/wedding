@@ -52,6 +52,12 @@ class Login extends MY_Controller
         $this->session->sess_destroy();
         redirect('/login');
     }
+    
+    public function not_admin()
+    {
+        $this->data['page_body'] = 'not_admin';
+        $this->render();
+    }
 }
 
 /* End of file Login.php */

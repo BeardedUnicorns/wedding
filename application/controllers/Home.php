@@ -21,10 +21,12 @@ class Home extends MY_Controller
 	 * Index page for this controller.
      */
     public function index()
-	{
-		$this->data['page_body'] = 'home';
+    {
+        $this->data['page_body'] = 'home';
         $this->render();
-	}
+    }
+        
+    
 }
 
 /* End of file Home.php */
