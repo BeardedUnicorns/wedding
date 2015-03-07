@@ -24,6 +24,13 @@
 
     </table>
     
+    <p>Notes:
+        <br/>
+        <textarea name="notes" rows="10" cols="60" >{notes}</textarea>
+    </p>
+        
+    <input type="submit" value="Submit">
+            
 </form>
 
-<p>Notes: {notes}</p>
+

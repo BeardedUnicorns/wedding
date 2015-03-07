@@ -110,9 +110,9 @@ INSERT INTO `status` (`id`, `description`) VALUES
 (1, 'no'),
 (2, 'unknown');
 
-INSERT INTO `groups` (`name`, `password`) VALUES
-('The Coutlees', '12345'),
-('Mom', 'mom');
+INSERT INTO `groups` (`name`, `password`, `notes`) VALUES
+('The Coutlees', '12345', 'We are a group'),
+('Mom', 'mom', 'We are also a group');
 
 INSERT INTO `users` (`group_id`, `first_name`, `last_name`, `email`, `status`) VALUES
 (1, 'Shane', 'Coutlee', 'scoutlee@here.com', 0),
