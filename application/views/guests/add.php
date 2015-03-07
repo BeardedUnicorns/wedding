@@ -1,6 +1,6 @@
 <h2>Guest <span>Add</p></h2>
 
-<form action="/guest/add_guest/{group_id}" method="post">
+<form action="/guest/submit_add/{group_id}" method="post">
     <div>
         <label for="first_name">First Name</label>
         <input type="text" id="first_name" name="first_name">

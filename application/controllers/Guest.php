@@ -165,7 +165,7 @@ class Guest extends MY_Controller
         }
         
         $guest = $this->guests->get($guest_id);        
-        $this->data['page_body']  = 'guests/guest_edit';
+        $this->data['page_body']  = 'guests/edit';
         $this->data['id'] = $guest_id;
         $this->data['group_id'] = $guest->group_id;
         $this->data['first_name'] = $guest->first_name;
@@ -210,6 +210,44 @@ class Guest extends MY_Controller
         
         $this->guests->delete($guest_id);
         redirect('/guest/admin_show_group/' . $group_id);
+    }
+    
+    public function add($group_id)
+    {
+        if (!$this->session->userdata('is_admin'))
+        {
+            // No access if not admin.
+            redirect('/not_admin');
+        }
+        
+        if ($this->input->post('submit'))
+        {
+            $this->submit_add($group_id);
+        }
+        
+        $this->data['page_body']  = 'guests/add';
+        $this->data['group_id'] = $group_id;
+        $this->render();
+    }
+    
+    public function submit_add($group_id)
+    {
+        if (!$this->session->userdata('is_admin'))
+        {
+            // No access if not admin.
+            redirect('/not_admin');
+        }
+        
+         $guest = $this->guests->create();
+         $guest->first_name = $this->input->post('first_name');
+         $guest->last_name = $this->input->post('last_name');
+         $guest->phone = $this->input->post('phone');
+         $guest->email = $this->input->post('email');
+         $guest->group_id = $group_id;
+         $guest->response_id = 2;
+         
+         $this->guests->add($guest);
+         redirect('/guest/admin_show_group/' . $group_id);
     }
     
     /**
