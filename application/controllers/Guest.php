@@ -211,8 +211,11 @@ class Guest extends MY_Controller
         $this->guests->delete($guest_id);
         redirect('/guest/admin_show_group/' . $group_id);
     }
-    
-    public function add($group_id)
+    /**
+     * Allows an admin to add a new guest to a group.
+     * @param $guest_id  The ID of the guest to edit.
+     */
+    public function add_guest($group_id)
     {
         if (!$this->session->userdata('is_admin'))
         {
@@ -220,17 +223,12 @@ class Guest extends MY_Controller
             redirect('/not_admin');
         }
         
-        if ($this->input->post('submit'))
-        {
-            $this->submit_add($group_id);
-        }
-        
-        $this->data['page_body']  = 'guests/add';
+        $this->data['page_body']  = 'guests/add_guest';
         $this->data['group_id'] = $group_id;
         $this->render();
     }
     
-    public function submit_add($group_id)
+    public function submit_new_guest($group_id)
     {
         if (!$this->session->userdata('is_admin'))
         {

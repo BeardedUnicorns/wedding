@@ -10,7 +10,7 @@
         
     </div>
     
-    <p><a href="/guest/add/{id}">Add New Guest</a></p>
+    <p><a href="/guest/add_guest/{id}">Add New Guest</a></p>
 
     <table id="group_list">
 
