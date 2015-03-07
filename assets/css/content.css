@@ -27,6 +27,7 @@
     list-style: none;
 }
 
+
 #group_list li
 {
     margin: 2px 0px;
@@ -84,4 +85,9 @@
 #gift_table tr th
 {
     padding: 4px 10px;
+}
+
+.list_no_bullet
+{
+    list-style: none;
 }

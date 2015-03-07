@@ -40,9 +40,14 @@ class Guest extends MY_Controller
             return;
         }
         
-        // User is logged in as a guest.
+        //User is logged in as a guest. right now we dont distinguish
+       //  between guests, so I'm hard coding a group
         $group = $this->groups->get_by_username(
                  $this->session->userdata('username'));
+          
+
+      //  $group = $this->groups->get_by_username(
+        //         $this->session->userdata('mom'));
         
         $this->get_guests($group);
         
@@ -95,8 +100,8 @@ class Guest extends MY_Controller
             $this->get_guests_admin($group);
         }
         
+        $this->data['page_body']  = 'guests/admin_all';
         $this->data['groups'] = $groups;
-        $this->data['page_body'] = 'guests/admin_all';
         $this->render();
     }
     
@@ -145,6 +150,125 @@ class Guest extends MY_Controller
         $this->data['guests']     = $group->guests;
         $this->data['notes']      = $group->notes;
         $this->data['page_body']  = 'guests/admin_one';
+        $this->render();
+    }
+    /**
+     * Allows an admin to edit a user within a group.
+     * @param $guest_id  The ID of the guest to edit.
+     */
+    public function edit_guest($guest_id)
+    {
+        if (!$this->session->userdata('is_admin'))
+        {
+            // No access if not admin.
+            redirect('/not_admin');
+        }
+        
+        $guest = $this->guests->get($guest_id);        
+        $this->data['page_body']  = 'guests/edit';
+        $this->data['id'] = $guest_id;
+        $this->data['group_id'] = $guest->group_id;
+        $this->data['first_name'] = $guest->first_name;
+        $this->data['last_name'] = $guest->last_name;
+        $this->data['phone'] = $guest->phone;
+        $this->data['email'] = $guest->email; 
+        $this->render();
+    }
+    /**
+     * Allows an admin to submit an edit to a user within a group.
+     * @param $guest_id  The ID of the guest to edit.
+     */
+    public function submit_guest($guest_id)
+    {        
+        if (!$this->session->userdata('is_admin'))
+        {
+            // No access if not admin.
+            redirect('/not_admin');
+        }
+        
+        $guest = $this->guests->get($guest_id);        
+        $guest->first_name = $this->input->post('first_name');
+        $guest->last_name = $this->input->post('last_name');
+        $guest->phone = $this->input->post('phone');
+        $guest->email = $this->input->post('email');
+
+        $this->guests->update($guest);
+        redirect('/guest/admin_show_group/' . $guest->group_id);
+    }
+    
+    /**
+     * Allows an admin to submit an edit to a user within a group.
+     * @param $guest_id  The ID of the guest to edit.
+     */
+    public function delete_guest($group_id, $guest_id)
+    {
+        if (!$this->session->userdata('is_admin'))
+        {
+            // No access if not admin.
+            redirect('/not_admin');
+        }
+        
+        $this->guests->delete($guest_id);
+        redirect('/guest/admin_show_group/' . $group_id);
+    }
+    /**
+     * Allows an admin to add a new guest to a group.
+     * @param $guest_id  The ID of the guest to edit.
+     */
+    public function add_guest($group_id)
+    {
+        if (!$this->session->userdata('is_admin'))
+        {
+            // No access if not admin.
+            redirect('/not_admin');
+        }
+        
+        $this->data['page_body']  = 'guests/add_guest';
+        $this->data['group_id'] = $group_id;
+        $this->render();
+    }
+    
+    public function submit_new_guest($group_id)
+    {
+        if (!$this->session->userdata('is_admin'))
+        {
+            // No access if not admin.
+            redirect('/not_admin');
+        }
+        
+         $guest = $this->guests->create();
+         $guest->first_name = $this->input->post('first_name');
+         $guest->last_name = $this->input->post('last_name');
+         $guest->phone = $this->input->post('phone');
+         $guest->email = $this->input->post('email');
+         $guest->group_id = $group_id;
+         $guest->response_id = 2;
+         
+         $this->guests->add($guest);
+         redirect('/guest/admin_show_group/' . $group_id);
+    }
+    
+    /**
+     * Shows the members of a specific group for the admin
+     * @param $group_id  The id of the group to be shown.
+     */
+    public function admin_show_group($group_id)
+    {
+        if (!$this->session->userdata('is_admin'))
+        {
+            // No access if not admin.
+            redirect('/not_admin');
+        }
+        
+        $group = $this->groups->get($group_id);
+        $this->get_guests_admin($group);
+
+        $this->data['page_body']  = 'guests/group_admin';
+        $this->data['id'] = $group->id;
+        $this->data['group_name'] = $group->name;
+        $this->data['group_password'] = $group->password;
+        $this->data['guests']  = $group->guests;
+        $this->data['notes']   = $group->notes;
         $this->render();
     }
     
