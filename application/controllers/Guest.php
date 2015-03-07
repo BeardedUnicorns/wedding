@@ -95,11 +95,6 @@ class Guest extends MY_Controller
         
         $groups = $this->groups->all();
         
-        foreach($groups as $group)
-        {
-            $this->get_guests_admin($group);
-        }
-        
         $this->data['page_body']  = 'guests/admin_all';
         $this->data['groups'] = $groups;
         $this->render();
@@ -270,6 +265,47 @@ class Guest extends MY_Controller
         $this->data['guests']  = $group->guests;
         $this->data['notes']   = $group->notes;
         $this->render();
+    }
+    /**
+     * Displays a page to add a new group
+     */
+    public function add_group()
+    {
+        if (!$this->session->userdata('is_admin'))
+        {
+            // No access if not admin.
+            redirect('/not_admin');
+        }
+        
+        $this->data['page_body']  = 'guests/add_group';
+        $this->render();
+    }
+    
+    public function submit_new_group()
+    {
+        if (!$this->session->userdata('is_admin'))
+        {
+            // No access if not admin.
+            redirect('/not_admin');
+        }
+        
+        $group = $this->groups->create();
+        $group->name = $this->input->post('group_name');
+        $group->password = $group->name . rand(100, 9999);
+        $this->groups->add($group);
+        $group = $this->groups->highest();
+        
+        $guest = $this->guests->create();
+        $guest->first_name = $this->input->post('first_name');
+        $guest->last_name = $this->input->post('last_name');
+        $guest->phone = $this->input->post('phone');
+        $guest->email = $this->input->post('email');
+        $guest->group_id = $group['id'];
+        $guest->response_id = 2;
+
+        $this->guests->add($guest);
+        $guest = $this->guests->highest();
+        redirect('/guest/admin_show_group/' . $group['id']);
     }
     
     /**

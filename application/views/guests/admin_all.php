@@ -1,4 +1,6 @@
 <h2>Group <span>List</span></h2>
+
+<p><a href="/guest/add_group">Add New Group</a></p>
 <ul class="list_no_bullet">
 {groups}
 <li>
