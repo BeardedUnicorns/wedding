@@ -1,4 +1,4 @@
-<h2>Guest <span>Edit</p></h2>
+<h2>Guest <span>Edit</span></h2>
 
 <form action="/guest/submit_guest/{id}" method="post">
     <div>
