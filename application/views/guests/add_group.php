@@ -1,4 +1,4 @@
-<h2>Group <span>Add</p></h2>
+<h2>Group <span>Add</span></h2>
 
 <form action="/guest/submit_new_group/" method="post">
     <h3>Group <span>Info</span></h3>

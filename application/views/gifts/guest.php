@@ -6,7 +6,7 @@
 </p>
 
 <form action="/gift/contribute" method="post">
-    <table id="gift_table">
+    <table class="blue_table">
         <tr>
             <th></th>
             <th>Item</th>
