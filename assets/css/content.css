@@ -79,7 +79,11 @@
     width: 24em;
 }
 
-#notes {
+#content iframe {
+    margin: 1em 0;
+}
+
+#notes, #html {
     background-color: #e4f4fa;
     font-family: 'Century Gothic', sans-serif;
     margin: 0.5em 0 0;
@@ -114,6 +118,15 @@
 }
 
 .guest_form div input {
+    float: right;
+}
+
+.location_form div {
+    width: 18em;
+    margin: 0.5em 0;
+}
+
+.location_form div input {
     float: right;
 }
 
