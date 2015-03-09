@@ -116,6 +116,7 @@ class Gift extends MY_Controller
         
         $this->data['title']       = '';
         $this->data['cost']        = '';
+        $this->data['picture']     = 'placeholder.png';
         $this->data['description'] = '';
         $this->data['page_body']   = 'gifts/admin_one';
         $this->render();
@@ -144,6 +145,8 @@ class Gift extends MY_Controller
         
         $this->data['title']       = $gift->title;
         $this->data['cost']        = $gift->cost;
+        $this->data['picture']     = $gift->picture ? $gift->picture
+                                                    : 'placeholder.png';
         $this->data['description'] = $gift->description;
         $this->data['page_body']   = 'gifts/admin_one';
         $this->render();
@@ -186,8 +189,7 @@ class Gift extends MY_Controller
         
         if ($this->upload->do_upload('picture'))
         {
-            $gift->picture_url = '/assets/images/gifts/'
-                    .$this->upload->data('file_name');
+            $gift->picture = $this->upload->data('file_name');
         }
     }
 }

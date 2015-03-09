@@ -84,7 +84,7 @@ CREATE TABLE IF NOT EXISTS `gift`
   `title`           varchar(64)     NOT NULL,
   `description`     text            NOT NULL,
   `cost`            numeric(15,2)   NOT NULL,
-  `picture_url`     varchar(512)    NULL,
+  `picture`         varchar(512)    NULL,
   `fulfilled`       bool            NOT NULL DEFAULT FALSE,
 
   PRIMARY KEY (`id`)
@@ -160,7 +160,7 @@ VALUES
     (3, 2, 'Lisa', 'Simpson', 'lisa@simpson.com');
 
 INSERT INTO `gift`
-    (`title`, `description`, `cost`, `picture_url`, `fulfilled`)
+    (`title`, `description`, `cost`, `picture`, `fulfilled`)
 VALUES
     ('TV', 'great!', 600, NULL, FALSE),
     ('HoneyMoon', 'Greece!', 3000, NULL, FALSE),
@@ -169,7 +169,7 @@ VALUES
     ('Goldfish', 'flush', 5, NULL, FALSE),
     ('Baboon', '<p><strong>A Cute Baboon</strong></p>
     <p>Isn&#39;t he adorable? Everyone loves baboons, and so do Sarah and Jeff!</p>',
-    999.95, '/assets/images/gifts/baboon.png', FALSE);
+    999.95, 'baboon.png', FALSE);
 
 INSERT INTO `location`
     (`event_title`, `description`, `start_time`, `notes`, `address`, `html`)

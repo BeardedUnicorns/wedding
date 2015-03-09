@@ -7,7 +7,7 @@
         <input type="text" id="group_name" name="group_name">
     </div>
     <div>
-        <label for="group_name">Group Username</label>
+        <label for="user_name">Group Username</label>
         <input type="text" id="user_name" name="user_name">
     </div>
     

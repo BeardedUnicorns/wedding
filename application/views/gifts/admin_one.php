@@ -10,13 +10,17 @@
         <input type="text" id="cost" name="cost" value="{cost}">
     </div>
     <div>
+        <label for="picture">Current Picture:</label><br>
+        <img class="gift_icon" src="/assets/images/gifts/{picture}" alt="{title}">
+    </div>
+    <div>
+        <label for="picture">Change Picture:</label><br>
+        <input type="file" id="picture" name="picture">
+    </div>
+    <div>
         <label for="description">Description:</label><br>
         <textarea id="description" name="description">{description}</textarea>
         <script>CKEDITOR.replace('description');</script>
-    </div>
-    <div>
-        <label for="picture">Picture:</label><br>
-        <input type="file" id="picture" name="picture">
     </div>
     <input type="submit" name="submit" value="Submit">
 </form>
