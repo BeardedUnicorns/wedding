@@ -158,9 +158,7 @@ class Location extends MY_Controller
             redirect('/not_admin');
         }
         
-        $location = $this->locations->get($location_id);  
-        
-        $this->locations->delete($location);
+        $this->locations->delete($location_id);
         redirect('/location/admin');
     }
 }
