@@ -6,6 +6,10 @@
     margin: 0.5em 0;
 }
 
+#content a {
+    color: #1b1bff;
+}
+
 #content a:hover {
     text-decoration: underline;
 }
@@ -18,47 +22,38 @@
     margin-left: 1.5em;
 }
 
-.gift_icon {
-    vertical-align: top;
-    width: 64px;
-    height: 64px;
-}
-
-/* 
-    Created on : Jan 31, 2015, 8:35:31 PM
-    Author     : Jeffrey
-*/
-
-
-#group_title
-{
-    font-size:28px;
-    font-weight: 200;
-    background-color: #68C6F3;
-    padding-top: 10px;
-    padding-left: 5px;
-    padding-bottom: 5px;
-}
-
-.blue_table
-{
+#content table {
     background-color:#91D8FA;
+    margin: 1em 0;
 }
 
-.blue_table tr:nth-child(even)
+#content table tr:nth-child(even)
 {
     background-color:#C2EAFE;
 }
 
-.blue_table tr td
+#content table tr td
 {
-    margin: 5px 20px;
-    padding: 4px 20px;
+    padding: 0.25em 0.75em;
 }
 
-.blue_table tr
-{
-    padding: 4px 10px;
+#content .gift_icon {
+    width: 64px;
+    height: 64px;
+}
+
+#content .admin {
+    width: 8em;
+}
+
+#notes {
+    background-color:#E4F4FA;
+    font-family: 'Century Gothic', sans-serif;
+    margin: 1em 0;
+    padding: 0.5em;
+    width: 24em;
+    height: 6em;
+    resize: none;
 }
 
 .blue_table a
@@ -74,6 +69,13 @@
     padding: 4px 10px;
     background-color:#1b1bff;
     color: #C2EAFE;
+    font-weight: bold;
+    text-align: left;
+}
+
+.blue_table img {
+    margin: 0.25em 0 0.75em;
+    vertical-align: top;
 }
 
 .list_no_bullet
@@ -81,18 +83,8 @@
     list-style: none;
 }
 
-p a
-{
-    color: #1b1bff;
-}
-
-#notes
-{
-    background-color:#E4F4FA;
-    color:#39baf8;
-    margin: 10px 0px 25px 0px;
-    padding: 10px;
-    width: 40%;
+#content .list_no_bullet li {
+    margin: 0;
 }
 
 .guest_form div
