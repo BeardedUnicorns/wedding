@@ -17,7 +17,7 @@
         {gift_items}
         <tr>
             <td><input type="checkbox" name="check_{id}"{checked}{disabled}>
-            <td>{title}</td>
+            <td><img class="gift_icon" src="/assets/images/gifts/{picture}" alt="{title}"></td>
             <td>{description}</td>
             <td>{cost}</td>
             <td>{status}</td>
