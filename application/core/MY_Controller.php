@@ -23,8 +23,14 @@ class MY_Controller extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->data['title'] = 'Sarah &amp; Jeff';
+        $this->data['page_title'] = 'Sarah &amp; Jeff&rsquo;s Wedding';
         $this->load->helper('menu');
+        
+        if ($this->session->has_userdata('username'))
+        {
+            unset($this->choices['Login']);
+            $this->choices['Logout'] = '/logout';
+        }
     }
     
     /**
@@ -34,7 +40,7 @@ class MY_Controller extends CI_Controller
     public function render()
     {
         $this->data['menu'] = build_menu(
-                $this->choices, $this->data['page_body']);
+                $this->choices, $this->uri->segment(1));
         
         $this->data['header']  = $this->parser->parse(
                 '_header', $this->data, true);

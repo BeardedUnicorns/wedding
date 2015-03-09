@@ -33,17 +33,21 @@ h1 {
 h2 {
     color: #666666;
     font-family: 'Josefin Sans', sans-serif;
+    font-size: 3em;
+	letter-spacing: -1px;
+	margin: 0 0 0.8em;
+}
+
+h3 {
+    color: #666666;
+    font-family: 'Josefin Sans', sans-serif;
     font-size: 2.5em;
 	letter-spacing: -1px;
 	margin: 0 0 0.8em;
 }
 
-h1 span, h2 span {
+h1 span, h2 span, h3 span {
 	color: #39baf8;
-}
-
-p {
-    
 }
 
 a {

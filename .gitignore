@@ -1,5 +1,9 @@
 .DS_Store
 
+assets/images/gifts/*
+!/assets/images/gifts/baboon.png
+!/assets/images/gifts/placeholder.png
+
 application/cache/*
 !application/cache/index.html
 !application/cache/.htaccess
