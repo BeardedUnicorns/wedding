@@ -118,7 +118,6 @@ class Guest extends MY_Controller
         $this->data['group_id'] = $guest->group_id;
         $this->data['first_name'] = $guest->first_name;
         $this->data['last_name'] = $guest->last_name;
-        $this->data['username'] = $guest->username;
         $this->data['phone'] = $guest->phone;
         $this->data['email'] = $guest->email; 
         $this->render();
@@ -162,7 +161,7 @@ class Guest extends MY_Controller
     }
     /**
      * Allows an admin to add a new guest to a group.
-     * @param $guest_id  The ID of the guest to edit.
+     * @param $group_id  The ID of the group to add the guest to.
      */
     public function add_guest($group_id)
     {
@@ -249,20 +248,21 @@ class Guest extends MY_Controller
         $group = $this->groups->create();
         $group->name = $this->input->post('group_name');
         $group->username = $this->input->post('user_name');
-        $group->password = $group->name . rand(100, 9999);
+        $group->password = $group->username . rand(100, 9999);
         $this->groups->add($group);
-        $group = $this->groups->highest();
+        
+        $group_id = $this->groups->highest();
         
         $guest = $this->guests->create();
         $guest->first_name = $this->input->post('first_name');
         $guest->last_name = $this->input->post('last_name');
         $guest->phone = $this->input->post('phone');
         $guest->email = $this->input->post('email');
-        $guest->group_id = $group['id'];
+        $guest->group_id = $group_id;
         $guest->response_id = 2;
 
         $this->guests->add($guest);
-        redirect('/guest/admin_show_group/' . $group['id']);
+        redirect('/guest/admin_show_group/' . $group_id);
     }
     
     /**
