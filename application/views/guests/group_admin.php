@@ -4,11 +4,13 @@
         <table class="blue_table">
             <tr>
                 <th>Group Name</th>
+                <th>Username</th>
                 <th>Password</th>
                 <th>Admin</th>
             </tr>
              <tr>
                 <td>{group_name}</td>
+                <td>{username}</td>
                 <td>{password}</td>
                 <td>
                     <a href="/guest/edit_group_admin/{id}">Edit</a>
