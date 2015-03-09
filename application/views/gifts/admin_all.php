@@ -12,7 +12,7 @@
     </tr>
     {gift_items}
     <tr>
-        <td>{title}</td>
+        <td><img class="gift_icon" src="{picture_url}" alt="{title}"></td>
         <td>{description}</td>
         <td>{cost}</td>
         <td>{status}</td>

@@ -18,6 +18,12 @@
     margin-left: 1.5em;
 }
 
+.gift_icon {
+    vertical-align: top;
+    width: 64px;
+    height: 64px;
+}
+
 /* 
     Created on : Jan 31, 2015, 8:35:31 PM
     Author     : Jeffrey

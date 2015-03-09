@@ -17,6 +17,9 @@ class Gift extends MY_Controller
         parent::__construct();
         $this->load->model('contributions');
         $this->load->model('gifts');
+        $this->load->library('upload', array(
+            'upload_path'   => './assets/images/gifts',
+            'allowed_types' => 'gif|jpg|png'));
     }
     
     /**
@@ -109,23 +112,6 @@ class Gift extends MY_Controller
             $this->populate_from_input($gift);
             $this->gifts->add($gift);
             redirect('/gift');
-            
-            $this->load->library('upload', array(
-                'upload_path'   => '/assets/images/gifts/',
-                'allowed_types' => 'gif|jpg|png'));
-
-            if ( ! $this->upload->do_upload())
-            {
-                    $error = array('error' => $this->upload->display_errors());
-
-                    $this->load->view('upload_form', $error);
-            }
-            else
-            {
-                    $data = array('upload_data' => $this->upload->data());
-
-                    $this->load->view('upload_success', $data);
-            }
         }
         
         $this->data['title']       = '';
@@ -197,6 +183,12 @@ class Gift extends MY_Controller
         $gift->title       = $this->input->post('title');
         $gift->description = $this->input->post('description');
         $gift->cost        = $this->input->post('cost');
+        
+        if ($this->upload->do_upload('picture'))
+        {
+            $gift->picture_url = '/assets/images/gifts/'
+                    .$this->upload->data('file_name');
+        }
     }
 }
 

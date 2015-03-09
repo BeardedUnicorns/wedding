@@ -15,7 +15,7 @@
         <script>CKEDITOR.replace('description');</script>
     </div>
     <div>
-        <label for="cost">Picture:</label><br>
+        <label for="picture">Picture:</label><br>
         <input type="file" id="picture" name="picture">
     </div>
     <input type="submit" name="submit" value="Submit">
