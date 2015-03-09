@@ -1,6 +1,6 @@
 <h2>Edit <span>Group</span></h2>
 
-<form action="/guest/submit_group/{id}" method="post">
+<form class="guest_form" action="/guest/submit_group/{id}" method="post">
     <div>
         <label for="first_name">Group Name</label>
         <input type="text" id="group_name" name="group_name" value="{group_name}">
