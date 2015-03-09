@@ -162,13 +162,12 @@ VALUES
 INSERT INTO `gift`
     (`title`, `description`, `cost`, `picture`, `fulfilled`)
 VALUES
-    ('TV', 'great!', 600, NULL, FALSE),
-    ('HoneyMoon', 'Greece!', 3000, NULL, FALSE),
-    ('Toaster', 'meh', 36, NULL, TRUE),
-    ('Fruit Basket', 'yum', 21, NULL, FALSE),
-    ('Goldfish', 'flush', 5, NULL, FALSE),
-    ('Baboon', '<p><strong>A Cute Baboon</strong></p>
-    <p>Isn&#39;t he adorable? Everyone loves baboons, and so do Sarah and Jeff!</p>',
+    ('TV', '<p><strong>TV</strong></p><p>A great thing to have!</p>', 600, NULL, FALSE),
+    ('Honeymoon', '<p><strong>Honeymoon</strong></p><p>Greece! Or perhaps Switzerland?</p>', 3000, NULL, FALSE),
+    ('Toaster', '<p><strong>Toaster</strong></p><p>Everyone needs one of those!</p>', 36, NULL, TRUE),
+    ('Fruit Basket', '<p><strong>Fruit Basket</strong></p><p>For the vitamins, you know?</p>', 21, NULL, FALSE),
+    ('Goldfish', '<p><strong>Goldfish</strong></p><p>Aww!</p>', 5, NULL, FALSE),
+    ('Baboon', '<p><strong>A Lovely Baboon</strong></p><p>Isn&#39;t he adorable? Everyone loves baboons, and so do Sarah and Jeff!</p>',
     999.95, 'baboon.png', FALSE);
 
 INSERT INTO `location`
