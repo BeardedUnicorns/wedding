@@ -101,53 +101,6 @@ class Guest extends MY_Controller
     }
     
     /**
-     * Allows an admin to edit the specified group.
-     * @param $group_id  The ID of the group to edit.
-     */
-    public function edit($group_id)
-    {
-        if (!$this->session->userdata('is_admin'))
-        {
-            // No access if not admin.
-            redirect('/not_admin');
-        }
-        
-        if ($this->input->post('submit'))
-        {
-            // User has submitted the form.
-            $group = $this->groups->get($group_id);
-            $group->name     = $this->input->post('name');
-            $group->username = $this->input->post('username');
-            $group->password = $this->input->post('password');
-            $group->notes    = $this->input->post('notes');
-            $this->groups->update($group);
-            
-            foreach ($this->groups->get_guests($group_id) as $guest)
-            {
-                $id = $guest->id;
-                $guest->first_name = $this->input->post("first_name_$id");
-                $guest->last_name  = $this->input->post("last_name_$id");
-                $guest->email      = $this->input->post("email_$id");
-                $guest->phone      = $this->input->post("phone_$id");
-                $this->guests->update($guest);
-            }
-            
-            redirect('/guest');
-        }
-        
-        $group = $this->groups->get($group_id);
-        $this->get_guests_admin($group);
-        
-        //$this->data['id'] = $group->id;
-        $this->data['group_name'] = $group->name;
-        $this->data['username']   = $group->username;
-        $this->data['password']   = $group->password;
-        $this->data['guests']     = $group->guests;
-        $this->data['notes']      = $group->notes;
-        $this->data['page_body']  = 'guests/admin_one';
-        $this->render();
-    }
-    /**
      * Allows an admin to edit a user within a group.
      * @param $guest_id  The ID of the guest to edit.
      */

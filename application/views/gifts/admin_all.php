@@ -2,7 +2,7 @@
 
 <p><a href="gift/add">Add New Record</a></p>
 
-<table id="gift_table">
+<table class="blue_table">
     <tr>
         <th>Item</th>
         <th>Description</th>
