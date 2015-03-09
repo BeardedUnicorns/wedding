@@ -57,6 +57,11 @@ class Gift extends MY_Controller
             $gift->status   = $gift->fulfilled ? 'Fulfilled' : 'Open';
             $gift->disabled = $gift->fulfilled ? ' disabled' : '';
             $gift->checked  = in_array($gift->id, $ids) ? ' checked' : '';
+            
+            if (!$gift->picture)
+            {
+                $gift->picture = 'placeholder.png';
+            }
         }
         
         $this->data['gift_items'] = $gifts;
