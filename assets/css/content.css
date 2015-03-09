@@ -18,23 +18,50 @@
     font-weight: bold;
 }
 
+#content input[type=submit] {
+    margin: 1em 0 0;
+}
+
+#content ul {
+    margin: 1em 0;
+}
+
 #content li {
     margin-left: 1.5em;
 }
 
 #content table {
-    background-color:#91D8FA;
+    background-color: #91d8fa;
     margin: 1em 0;
 }
 
-#content table tr:nth-child(even)
-{
-    background-color:#C2EAFE;
+#content table tr:nth-child(even) {
+    background-color: #c2eafe;
 }
 
-#content table tr td
-{
+#content table th {
+    background-color: #1b1bff;
+    color: #c2eafe;
+    font-weight: bold;
+    text-align: left;
+}
+
+#content table th, td {
     padding: 0.25em 0.75em;
+}
+
+#content table a
+{
+    background-color: #e4f4fa;
+    border: 1px solid #1b1bff;
+    color: #1b1bff;
+    padding: 0.1em 0.2em;
+}
+
+
+#content table img {
+    margin: 0.25em 0 0.75em;
+    vertical-align: top;
 }
 
 #content .gift_icon {
@@ -43,57 +70,58 @@
 }
 
 #content .admin {
-    width: 8em;
+    min-width: 6.5em;
+}
+
+#content .notes {
+    background-color: #e4f4fa;
+    padding: 0.25em 0.75em;
+    width: 24em;
 }
 
 #notes {
-    background-color:#E4F4FA;
+    background-color: #e4f4fa;
     font-family: 'Century Gothic', sans-serif;
-    margin: 1em 0;
+    margin: 0.5em 0 0;
     padding: 0.5em;
     width: 24em;
     height: 6em;
     resize: none;
 }
 
-.blue_table a
-{
-    color: #1b1bff;
-    background-color: #E4F4FA;
-    border: 1px solid #1b1bff;
-    padding: 2px 4px;
-}
-
-.blue_table th
-{
-    padding: 4px 10px;
-    background-color:#1b1bff;
-    color: #C2EAFE;
-    font-weight: bold;
-    text-align: left;
-}
-
-.blue_table img {
-    margin: 0.25em 0 0.75em;
-    vertical-align: top;
-}
-
-.list_no_bullet
-{
+#groups {
     list-style: none;
 }
 
-#content .list_no_bullet li {
-    margin: 0;
+#groups li {
+    margin: 0.5em 0;
 }
 
-.guest_form div
-{
-    width: 35%;
-    margin-bottom: 5px;
+#groups li a {
+    color: #666666;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 2em;
+    letter-spacing: -1px;
 }
 
-.guest_form div input
-{
+#groups li a span {
+    color: #39baf8;
+}
+
+.guest_form div {
+    width: 18em;
+    margin: 0.5em 0;
+}
+
+.guest_form div input {
     float: right;
+}
+
+.gift_form>div {
+    margin: 0 0 0.5em;
+}
+
+.gift_form label {
+    display: inline-block;
+    margin: 0 0 0.1em;
 }

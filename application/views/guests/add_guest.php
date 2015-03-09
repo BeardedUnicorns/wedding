@@ -1,4 +1,4 @@
-<h2>Guest <span>Add</span></h2>
+<h2>Add <span>Guest</span></h2>
 
 <form class="guest_form" action="/guest/submit_new_guest/{group_id}" method="post">
     <div>

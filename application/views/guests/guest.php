@@ -1,7 +1,7 @@
 <h2>Guest <span>Response</span></h2>
 
 <form action="/guest/respond" method="post">
-    <table class="blue_table">
+    <table>
         <tr>
             <th>{group_name}</th>
             {responses}
@@ -12,9 +12,7 @@
         <tr>
             <td>{first_name} {last_name}</td>
             {responses}
-            <td>
-                <input type="radio" name="{name}" value="{value}"{checked}>
-            </td>
+            <td><input type="radio" name="{name}" value="{value}"{checked}></td>
             {/responses}
         </tr>
         {/guests}
