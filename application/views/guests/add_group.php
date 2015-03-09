@@ -1,6 +1,6 @@
 <h2>Group <span>Add</span></h2>
 
-<form action="/guest/submit_new_group/" method="post">
+<form class="guest_form" action="/guest/submit_new_group/" method="post">
     <h3>Group <span>Info</span></h3>
     <div>
         <label for="group_name">Group Name</label>

@@ -95,13 +95,13 @@ p a
     width: 40%;
 }
 
-form div
+.guest_form div
 {
     width: 35%;
     margin-bottom: 5px;
 }
 
-form div input
+.guest_form div input
 {
     float: right;
 }
