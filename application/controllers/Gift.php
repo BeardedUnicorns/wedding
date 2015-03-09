@@ -109,6 +109,23 @@ class Gift extends MY_Controller
             $this->populate_from_input($gift);
             $this->gifts->add($gift);
             redirect('/gift');
+            
+            $this->load->library('upload', array(
+                'upload_path'   => '/assets/images/gifts/',
+                'allowed_types' => 'gif|jpg|png'));
+
+            if ( ! $this->upload->do_upload())
+            {
+                    $error = array('error' => $this->upload->display_errors());
+
+                    $this->load->view('upload_form', $error);
+            }
+            else
+            {
+                    $data = array('upload_data' => $this->upload->data());
+
+                    $this->load->view('upload_success', $data);
+            }
         }
         
         $this->data['title']       = '';

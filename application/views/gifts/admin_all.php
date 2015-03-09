@@ -1,4 +1,4 @@
-<h2>Gift <span>List</p></h2>
+<h2>Gift <span>List</span></h2>
 
 <p><a href="gift/add">Add New Record</a></p>
 
