@@ -2,8 +2,9 @@
 
 <p><a href="/location/add_location">Add New Location</a></p>
 
+{places_list}
 <table class="blue_table">
-    {places_list}
+    
     <tr>
         <th>Event</th>
         <th>Description</th>
@@ -20,10 +21,11 @@
             <a href="/location/edit_location/{id}">Edit</a>
             <a href="/location/delete_location/{id}">Delete</a>
         </td>
+    </tr>   
 </table>
-<div id="notes">
-    <h4>Notes:</h4>
-        <p>{notes}</p>
-</div>
+    <div id="notes">
+        <h4>Notes:</h4>
+            <p>{notes}</p>
+    </div>
     {html}
-    {/places_list}
+{/places_list} 
