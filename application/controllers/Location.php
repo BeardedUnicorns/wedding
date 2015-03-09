@@ -106,6 +106,63 @@ class Location extends MY_Controller
         $this->locations->update($location);
         redirect('/location/admin');
     }
+    
+    /**
+     * Displays a page to add a new location.
+     */
+    public function add_location()
+    {
+        if (!$this->session->userdata('is_admin'))
+        {
+            // No access if not admin.
+            redirect('/not_admin');
+        }
+        
+        $this->data['page_body']  = 'locations/add_location';
+        $this->render();
+    }
+    
+    /**
+     * Allows an admin to create a new location.
+     */
+    public function submit_new_location()
+    {        
+        if (!$this->session->userdata('is_admin'))
+        {
+            // No access if not admin.
+            redirect('/not_admin');
+        }
+        
+        $location = $this->locations->create();  
+        
+        $location->event_title = $this->input->post('event_title');
+        $location->description = $this->input->post('description');
+        $location->start_time = $this->input->post('start_time');
+        $location->notes = $this->input->post('notes'); 
+        $location->address = $this->input->post('address');
+        //$location->html = $this->input->post('html');
+
+        $this->locations->add($location);
+        redirect('/location/admin');
+    }
+    
+    /**
+     * Deletes a location.
+     * @param type $location_id group to delete
+     */
+    public function delete_location($location_id)
+    {
+        if (!$this->session->userdata('is_admin'))
+        {
+            // No access if not admin.
+            redirect('/not_admin');
+        }
+        
+        $location = $this->locations->get($location_id);  
+        
+        $this->locations->delete($location);
+        redirect('/location/admin');
+    }
 }
 
 /* End of file Location.php */
