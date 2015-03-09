@@ -15,7 +15,7 @@ class Locations extends MY_Model
     public function __construct()
     {
         parent::__construct('location');
-    }  
+    }
 }
 
 /* End of file Locations.php */

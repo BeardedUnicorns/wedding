@@ -118,6 +118,7 @@ class Guest extends MY_Controller
         $this->data['group_id'] = $guest->group_id;
         $this->data['first_name'] = $guest->first_name;
         $this->data['last_name'] = $guest->last_name;
+        $this->data['username'] = $guest->username;
         $this->data['phone'] = $guest->phone;
         $this->data['email'] = $guest->email; 
         $this->render();
