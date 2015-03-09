@@ -1,7 +1,7 @@
-<h2>Group Name: <span>{group_name}</span></h2>
+<h2>Group <span>Info</span></h2>
     
     <div id="group_info">
-        <table id="group_table">
+        <table class="blue_table">
             <tr>
                 <th>Group Name</th>
                 <th>Password</th>
@@ -16,17 +16,18 @@
                 </td>
             </tr>
         </table>
-    
-        <h4>Notes:</h4>
-        <p>{notes}</p>
+        <div id="notes">
+            <h4>Group Notes:</h4>
+            <p>{notes}</p>
+        </div>
         
     </div>
     
-    <p><a href="/guest/add_guest/{id}">Add New Guest</a></p>
+    <h2>Guest <span>Info</span></h2>
     
-    <h2>Guest <span>List</span></h2>
+    <p><a href="/guest/add_guest/{id}">Add New Guest</a></p>
 
-    <table id="group_list">
+    <table class="blue_table">
 
         <tr>
             <th>First Name</th>

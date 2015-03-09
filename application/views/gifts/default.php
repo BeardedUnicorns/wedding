@@ -6,7 +6,7 @@
     you? No wedding without gifts!
 </p>
 
-<table id="gift_table">
+<table class="blue_table">
     <tr>
         <th>Item</th>
         <th>Description</th>

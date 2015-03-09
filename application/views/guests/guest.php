@@ -1,7 +1,7 @@
 <h2>Guest <span>Response</span></h2>
 
 <form action="/guest/respond" method="post">
-    <table id="group_list">
+    <table class="blue_table">
         <tr>
             <th>{group_name}</th>
             {responses}
@@ -22,7 +22,7 @@
     
     <div>
         <label for="notes">Notes:</label><br>
-        <textarea id="notes" name="notes" value="notes">{notes}</textarea>
+        <textarea name="notes" value="notes" rows="4" cols="40">{notes}</textarea>
     </div>
     <input type="submit" value="Submit">    
 </form>
