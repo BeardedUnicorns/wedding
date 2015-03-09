@@ -1,10 +1,9 @@
-<h2>Wedding <span>Location</span></h2>
+<h2>Manage <span>Locations</span></h2>
 
 <p><a href="/location/add_location">Add New Location</a></p>
 
 {places_list}
-<table class="blue_table">
-    
+<table>
     <tr>
         <th>Event</th>
         <th>Description</th>
@@ -23,9 +22,8 @@
         </td>
     </tr>   
 </table>
-    <div id="notes">
-        <h4>Notes:</h4>
-            <p>{notes}</p>
-    </div>
-    {html}
+<div class="notes">
+    <p><strong>Notes:</strong> {notes}</p>
+</div>
+{html}
 {/places_list} 

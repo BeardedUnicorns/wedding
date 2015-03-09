@@ -113,7 +113,7 @@ class Guest extends MY_Controller
         }
         
         $guest = $this->guests->get($guest_id);        
-        $this->data['page_body']  = 'guests/edit';
+        $this->data['page_body']  = 'guests/edit_guest';
         $this->data['id'] = $guest_id;
         $this->data['group_id'] = $guest->group_id;
         $this->data['first_name'] = $guest->first_name;
@@ -211,7 +211,7 @@ class Guest extends MY_Controller
         $group = $this->groups->get($group_id);
         $this->get_guests_admin($group);
 
-        $this->data['page_body']  = 'guests/group_admin';
+        $this->data['page_body']  = 'guests/admin_one';
         $this->data['id'] = $group->id;
         $this->data['group_name'] = $group->name;
         $this->data['password'] = $group->password;
@@ -247,7 +247,7 @@ class Guest extends MY_Controller
         
         $group = $this->groups->create();
         $group->name = $this->input->post('group_name');
-        $group->username = $this->input->post('user_name');
+        $group->username = $this->input->post('username');
         $group->password = $group->username . rand(100, 9999);
         $this->groups->add($group);
         
@@ -301,7 +301,7 @@ class Guest extends MY_Controller
         
         $group = $this->groups->get($group_id);
         $group->name = $this->input->post('group_name');
-        $group->username = $this->input->post('user_name');
+        $group->username = $this->input->post('username');
         $group->password = $this->input->post('password');
         $this->groups->update($group);
         
