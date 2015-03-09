@@ -1,4 +1,4 @@
-<h2>Group <span>Add</span></h2>
+<h2>Add <span>Group</span></h2>
 
 <form class="guest_form" action="/guest/submit_new_group/" method="post">
     <h3>Group <span>Info</span></h3>
@@ -7,11 +7,11 @@
         <input type="text" id="group_name" name="group_name">
     </div>
     <div>
-        <label for="user_name">Group Username</label>
-        <input type="text" id="user_name" name="user_name">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username">
     </div>
     
-    <h3>User <span>Info</span></h3>
+    <h3>Guest <span>Info</span></h3>
     <div>
         <label for="first_name">First Name</label>
         <input type="text" id="first_name" name="first_name">

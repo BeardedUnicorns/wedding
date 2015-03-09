@@ -1,4 +1,4 @@
-<h2>Guest <span>Edit</span></h2>
+<h2>Edit <span>Guest</span></h2>
 
 <form class="guest_form" action="/guest/submit_guest/{id}" method="post">
     <div>
@@ -17,5 +17,5 @@
         <label for="email">Email</label>
         <input type="text" id="email" name="email" value="{email}">
     </div>
-    <input type="submit" value="Edit Guest">
+    <input type="submit" value="Save Changes">
 </form>

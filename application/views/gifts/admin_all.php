@@ -1,8 +1,8 @@
-<h2>Gift <span>List</span></h2>
+<h2>Manage <span>Gifts</span></h2>
 
-<p><a href="gift/add">Add New Record</a></p>
+<p><a href="gift/add">Add New Gift</a></p>
 
-<table class="blue_table">
+<table>
     <tr>
         <th>Item</th>
         <th>Description</th>

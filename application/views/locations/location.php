@@ -1,7 +1,7 @@
-<h2>Wedding <span>Location</span></h2>
+<h2>Wedding <span>Locations</span></h2>
 
 {places_list}
-<table class="blue_table">
+<table>
     <tr>
         <th>Event</th>
         <th>Description</th>
@@ -15,9 +15,8 @@
         <td>{address}</td>
     </tr>
 </table>
-<div id="notes">
-    <h4>Notes:</h4>
-        <p>{notes}</p>
+<div class="notes">
+    <p><strong>Notes:</strong> {notes}</p>
 </div>
-    {html}
+{html}
 {/places_list}

@@ -78,7 +78,7 @@ class Location extends MY_Controller
         $this->data['start_time'] = $location->start_time;
         $this->data['notes'] = $location->notes;
         $this->data['address'] = $location->address;
-        //$this->data['html'] = $location->html;
+        $this->data['html'] = $location->html;
         $this->render();
     }
     
@@ -101,7 +101,7 @@ class Location extends MY_Controller
         $location->start_time = $this->input->post('start_time');
         $location->notes = $this->input->post('notes'); 
         $location->address = $this->input->post('address');
-        //$location->html = $this->input->post('html');
+        $location->html = $this->input->post('html');
 
         $this->locations->update($location);
         redirect('/location/admin');
@@ -140,7 +140,7 @@ class Location extends MY_Controller
         $location->start_time = $this->input->post('start_time');
         $location->notes = $this->input->post('notes'); 
         $location->address = $this->input->post('address');
-        //$location->html = $this->input->post('html');
+        $location->html = $this->input->post('html');
 
         $this->locations->add($location);
         redirect('/location/admin');
