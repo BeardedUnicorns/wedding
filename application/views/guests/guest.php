@@ -22,7 +22,7 @@
     
     <div>
         <label for="notes">Notes:</label><br>
-        <textarea name="notes" value="notes" rows="4" cols="40">{notes}</textarea>
+        <textarea id="notes" name="notes" value="notes">{notes}</textarea>
     </div>
     <input type="submit" value="Submit">    
 </form>

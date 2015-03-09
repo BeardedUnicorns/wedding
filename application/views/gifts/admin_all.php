@@ -8,7 +8,7 @@
         <th>Description</th>
         <th>Cost</th>
         <th>Status</th>
-        <th>Admin</th>
+        <th class="admin">Admin</th>
     </tr>
     {gift_items}
     <tr>
