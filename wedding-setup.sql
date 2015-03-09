@@ -84,6 +84,7 @@ CREATE TABLE IF NOT EXISTS `gift`
   `title`           varchar(64)     NOT NULL,
   `description`     text            NOT NULL,
   `cost`            numeric(15,2)   NOT NULL,
+  `picture_url`     varchar(512)    NULL,
   `fulfilled`       bool            NOT NULL DEFAULT FALSE,
 
   PRIMARY KEY (`id`)
@@ -159,22 +160,25 @@ VALUES
     (3, 2, 'Lisa', 'Simpson', 'lisa@simpson.com');
 
 INSERT INTO `gift`
-    (`title`, `description`, `cost`, `fulfilled`)
+    (`title`, `description`, `cost`, `picture_url`, `fulfilled`)
 VALUES
-    ('TV', 'great!', 600, FALSE),
-    ('HoneyMoon', 'Greece!', 3000, FALSE),
-    ('Toaster', 'meh', 36, TRUE),
-    ('Fruit Basket', 'yum', 21, FALSE),
-    ('Goldfish', 'flush', 5, FALSE);
+    ('TV', 'great!', 600, NULL, FALSE),
+    ('HoneyMoon', 'Greece!', 3000, NULL, FALSE),
+    ('Toaster', 'meh', 36, NULL, TRUE),
+    ('Fruit Basket', 'yum', 21, NULL, FALSE),
+    ('Goldfish', 'flush', 5, NULL, FALSE),
+    ('Baboon', '<p><strong>A Cute Baboon</strong></p>
+    <p>Isn&#39;t he adorable? Everyone loves baboons, and so do Sarah and Jeff!</p>',
+    999.95, '/assets/images/gifts/baboon.png', FALSE);
 
 INSERT INTO `location`
     (`event_title`, `description`, `start_time`, `notes`, `address`, `html`)
 VALUES
     ('Wedding Ceremony', 'smooth criminal', '6:00pm', '', '1600 Pennsylvania
-        Avenue', '<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12420.601576604287!2d-77.03653!3d38.897676!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x715969d86d0b76bf!2sThe+White+House!5e0!3m2!1sen!2sca!4v1425762499415" width="600" height="450" frameborder="0" style="border:0"></iframe>'),
+           Avenue', '<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12420.601576604287!2d-77.03653!3d38.897676!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x715969d86d0b76bf!2sThe+White+House!5e0!3m2!1sen!2sca!4v1425762499415" width="600" height="450" frameborder="0" style="border:0"></iframe>'),
     ('Cocktail Hour', 'beat it', '7:00pm', '', 'Moscow, Russia, 103073', 
         '<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d17962.98372874596!2d37.617499!3d55.752023!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xa886bf5a3d9b2e68!2sThe+Moscow+Kremlin!5e0!3m2!1sen!2sca!4v1425762583309" width="600" height="450" frameborder="0" style="border:0"></iframe>'),
-   ('Reception', 'thriller', '7:00am', '', 'London, SW1A 1AA, United Kingdom',
+    ('Reception', 'thriller', '7:00am', '', 'London, SW1A 1AA, United Kingdom',
         '<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d9934.583867758007!2d-0.14189!3d51.501364!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xa26abf514d902a7!2sBuckingham+Palace!5e0!3m2!1sen!2sca!4v1425762643806" width="600" height="450" frameborder="0" style="border:0"></iframe>');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -1,4 +1,4 @@
-<h2>Gift <span>List</p></h2>
+<h2>Gift <span>List</span></h2>
 
 <p><a href="gift/add">Add New Record</a></p>
 
@@ -12,7 +12,7 @@
     </tr>
     {gift_items}
     <tr>
-        <td>{title}</td>
+        <td><img class="gift_icon" src="{picture_url}" alt="{title}"></td>
         <td>{description}</td>
         <td>{cost}</td>
         <td>{status}</td>
