@@ -6,6 +6,10 @@
         <label for="group_name">Group Name</label>
         <input type="text" id="group_name" name="group_name">
     </div>
+    <div>
+        <label for="group_name">Group Username</label>
+        <input type="text" id="user_name" name="user_name">
+    </div>
     
     <h3>User <span>Info</span></h3>
     <div>
